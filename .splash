@@ -1,0 +1,5 @@
+echo "\033[0;36mFound With Me\033[0m"
+echo "    Deploy to Heroku or AWS"
+echo "\nEnvironment:"
+echo "  Ruby 1.9.3-p362, Rails 3.2\n"
+tput sgr0

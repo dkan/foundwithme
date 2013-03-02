@@ -1,0 +1,70 @@
+# Developer
+.env
+
+# Ignore bundler config
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# OS X
+.DS_Store
+.Spotlight-v100
+.Trashes
+*.app
+*.cxx
+
+# Linux
+*.swp
+*.swo
+.*.sw[a-z]
+*.un~
+
+# Ruby
+*.gem
+*.rbc
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+
+# Rails
+*.rbc
+*.sassc
+.sass-cache
+.rspec
+/vendor/bundle
+/public/system/*
+/coverage/
+/spec/tmp/*
+
+# TextMate
+*.tmproj
+*.tmproject
+tmtags
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.tar.gz
+*.zip
+*.bzip

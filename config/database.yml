@@ -1,0 +1,18 @@
+shared: &SHARED
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+
+development:
+  <<: *SHARED
+  database: foundwithme_development
+
+test:
+  <<: *SHARED
+  database: foundwithme_test
+
+production:
+  <<: *SHARED
+  database: foundwithme_production
+  password:
