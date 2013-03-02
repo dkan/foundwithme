@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 ruby '1.9.3'
 
@@ -19,6 +19,7 @@ gem 'rest-client'
 
 # Support
 gem 'friendly_id', '~> 4.0.9'
+gem 'dotenv'
 
 # Gems used only for assets and not required
 # in production environments by default.
