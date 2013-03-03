@@ -1,0 +1,10 @@
+<h2> skills </h2>
+<%= link_to "Refresh skills from linkedin", import_skills_path %>
+
+<% if @user.user_skills %>
+<table>
+  <% @user.user_skills.each do |u| %>
+      <tr><td><%= u.skill.name %></td></tr>
+  <% end %>
+</table>
+<% end %>
