@@ -11,6 +11,54 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130303005856) do
+
+  create_table "educations", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "institution"
+    t.string   "degree"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "employments", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "company"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "interests", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "interests", ["name"], :name => "index_interests_on_name", :unique => true
+
+  create_table "skills", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "skills", ["name"], :name => "index_skills_on_name", :unique => true
+
+  create_table "user_interests", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "user_skills", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
