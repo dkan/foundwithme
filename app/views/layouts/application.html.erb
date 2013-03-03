@@ -3,10 +3,6 @@
 <head>
   <title>Found With Me</title>
   <%= stylesheet_link_tag    "application" %>
-
-  <%= render 'layouts/user' %>
-  <%= javascript_include_tag "application" %>
-
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,6 +10,9 @@
 <%= render 'layouts/navigation' %>
 
 <%= yield %>
+
+<%= render 'layouts/user' %>
+<%= javascript_include_tag "application" %>
 
 </body>
 </html>

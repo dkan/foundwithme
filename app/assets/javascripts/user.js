@@ -1,10 +1,31 @@
 function User (currentUser) {
+  this.id = null;
+  this.email = null;
+
   this.first_name = null;
   this.last_name = null;
+  this.bio = null;
 
-  var initialize = function (currentUser) {
+  this._location = null;
+  this.latitude = null;
+  this.longitude = null;
+
+  this._status = null;
+
+  var initialize = function (obj, currentUser) {
     if (currentUser !== null) {
-      // Do stuff with JSON.
+      obj.id = currentUser['id'];
+      obj.email = currentUser['email'];
+
+      obj.first_name = currentUser['first_name'];
+      obj.last_name = currentUser['last_name'];
+      obj.bio = currentUser['bio'];
+
+      obj._location = currentUser['location'];
+      obj.latitude = currentUser['latitude'];
+      obj.longitude = currentUser['longitude'];
+
+      obj._status = currentUser['status'];
     }
   };
 
@@ -24,5 +45,5 @@ function User (currentUser) {
       last_name.charAt(0).toUpperCase() + '.';
   };
 
-  initialize();
+  initialize(this, currentUser);
 }
