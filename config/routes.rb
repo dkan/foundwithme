@@ -5,7 +5,7 @@ Foundwithme::Application.routes.draw do
     match '/auth/failure', :to => 'authentications#failure'
 
   authenticated :user do
-    root :to => 'root#index'
+    root :to => 'users#index'
   end
   
   as :user do
