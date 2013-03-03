@@ -1,0 +1,44 @@
+<div id="search-bar">
+  <h4>You are looking for a:</h4>
+  <div id="search-role">
+    <span name="Developer" class="checkbox">Developer</span><br />
+    <span name="Designer" class="checkbox">Designer</span><br />
+    <span name="Business Developer" class="checkbox">Business Developer</span><br />
+    <span name="Advisor" class="checkbox">Advisor</span><br />
+  </div>
+  <h4>Located in:</h4>
+  <div id="search-location">
+    <%= text_field_tag 'location', current_user.location, placeholder: 'Enter search location...' %>
+  </div>
+  <h4>They are skilled in:</h4>
+  <div id="search-skills">
+    <%= text_field_tag 'skills', '', placeholder: 'Enter skills...' %>
+  </div>
+  <h4>And interested in:</h4>
+  <div id="search-interests">
+    <%= text_field_tag 'interests', '', placeholder: 'Enter interests...' %>
+  </div>
+  <h4>They are:</h4>
+  <div id="search-status">
+    <span name="Casually looking" class="checkbox">Casually looking</span><br />
+    <span name="On the prowl" class="checkbox">On the prowl</span><br />
+    <span name="Happily matched" class="checkbox">Happily matched</span><br />
+    <span name="On the rebound" class="checkbox">On the rebound</span><br />
+    <span name="Open relationship" class="checkbox">Open relationship</span><br />
+  </div>
+  <h4>And have gotten:</h4>
+  <div id="search-milestone">
+    <span name="Nowhere" class="checkbox">Nowhere</span><br />
+    <span name="Ideas flowing" class="checkbox">Ideas flowing</span><br />
+    <span name="Prototyped products" class="checkbox">Prototyped products</span><br />
+    <span name="People to use" class="checkbox">People to use</span><br />
+  </div>
+  <h4>They are looking for a:</h4>
+  <div id="search-looking-for">
+    <span name="Developer" class="checkbox">Developer</span><br />
+    <span name="Designer" class="checkbox">Designer</span><br />
+    <span name="Business Developer" class="checkbox">Business Developer</span><br />
+    <span name="Advisor" class="checkbox">Advisor</span><br />
+  </div>
+  <div id="search-button">Search</div>
+</div>
