@@ -9,8 +9,18 @@ var Search = {
 };
 
 $(document).ready(function(){
+  $('div[id^=search-]').on('click', function(event){
+
+    if ($(event.target).is('span.checkbox')) {
+      if ($(event.target).hasClass('checked')) {
+        $(event.target).removeClass('checked');
+      } else {
+        $(event.target).addClass('checked');
+      }
+    }
+  });
+
   $('#search-button').on('click', function(){
-    console.log('SEARCH!!');
     $.ajax({
       type: 'get',
       url: '/users',
@@ -26,52 +36,50 @@ $(document).ready(function(){
 
   });
 
-  $('#search-role').on('change', function(){
+  $('#search-role').on('click', function(event){
     var roles = []
-    var roleChecks = $('#search-role').children('input')
-
+    var roleChecks = $('#search-role').children('span')
     for (var i=0,rc;rc=roleChecks[i];i++) {
-      if ($(rc).is(':checked')){
-        roles.push(rc.id);
+      if ($(rc).hasClass('checked')){
+        roles.push($(rc).attr('name'));
       }
     }
     Search.roles = roles;
     return false;
   });
 
-  $('#search-status').on('change', function(){
+  $('#search-status').on('click', function(){
     var statuses = []
-    var statusChecks = $('#search-status').children('input')
-
+    var statusChecks = $('#search-status').children('span')
     for (var i=0,sc;sc=statusChecks[i];i++) {
-      if ($(sc).is(':checked')){
-        statuses.push(sc.id);
+      if ($(sc).hasClass('checked')){
+        statuses.push($(sc).attr('name'));
       }
     }
     Search.statuses = statuses;
     return false;
   });
 
-  $('#search-milestone').on('change', function(){
+  $('#search-milestone').on('click', function(){
     var milestones = []
-    var milestonesChecks = $('#search-milestone').children('input')
+    var milestonesChecks = $('#search-milestone').children('span')
 
     for (var i=0,mc;mc=milestonesChecks[i];i++) {
-      if ($(mc).is(':checked')){
-        milestones.push(mc.id);
+      if ($(mc).hasClass('checked')){
+        milestones.push($(mc).attr('name'));
       }
     }
     Search.milestones = milestones;
     return false;
   });
 
-  $('#search-looking-for').on('change', function(){
+  $('#search-looking-for').on('click', function(){
     var lookingFor = []
-    var lookingForChecks = $('#search-looking-for').children('input')
+    var lookingForChecks = $('#search-looking-for').children('span')
 
     for (var i=0,lfc;lfc=lookingForChecks[i];i++) {
-      if ($(lfc).is(':checked')){
-        lookingFor.push(lfc.id);
+      if ($(lfc).hasClass('checked')){
+        lookingFor.push($(lfc).attr('name'));
       }
     }
     Search.lookingFor = lookingFor;
