@@ -1,6 +1,5 @@
 class AuthenticationsController < ApplicationController
   def create
-    
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
@@ -13,7 +12,8 @@ class AuthenticationsController < ApplicationController
     else
       user = User.new
       user.attr_from_omniauth(omniauth)
-          
+      user.location = "#{request.location.city}, #{request.location.state}"
+
       if user.save
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
