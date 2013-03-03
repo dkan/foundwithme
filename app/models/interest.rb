@@ -4,12 +4,14 @@ class Interest < ActiveRecord::Base
   def self.get_ids_from_omniauth(omniauth)
     
     ids = []
-    interest_list = omniauth.extra.raw_info.interests.split(',')
+    interest_list = omniauth.extra.raw_info.interests
     
-    interest_list.each do |interest|
-      ids << self.find_or_create_by_name(interest.strip).id
-    end
-    
+    if interest_list
+      interest_list = interest_list.split(',') 
+      interest_list.each do |interest|
+        ids << self.find_or_create_by_name(interest.strip).id
+      end
+    end    
     ids
   end
 end
