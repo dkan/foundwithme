@@ -12,6 +12,10 @@ gem 'geocoder'
 gem 'pg'
 gem 'postgres_ext'
 
+# Caching
+gem 'memcachier'
+gem 'dalli'
+
 # Authentication and Authorization
 gem 'devise'
 gem 'omniauth-linkedin'
