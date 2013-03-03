@@ -1,7 +1,54 @@
-<table>
-<% @users.each do |u| %>
-  <% if u != current_user %>
-    <%= render partial: 'user_snippit', locals: { u: u } %>
-  <% end %>
-<% end %>
-</table>
+<div id="search-bar">
+  <h4>You are looking for a:</h4>
+  <div id="search-role">
+    <%= check_box_tag 'Developer' %> Developer<br />
+    <%= check_box_tag 'Designer' %> Designer<br />
+    <%= check_box_tag 'Business Developer' %> Business Developer<br />
+    <%= check_box_tag 'Advisor' %> Advisor<br />
+  </div>
+  <h4>Located in:</h4>
+  <div id="search-location">
+    <%= text_field_tag 'location', current_user.location, placeholder: 'Enter search location...' %>
+  </div>
+  <h4>They are skilled in:</h4>
+  <div id="search-skills">
+    <%= text_field_tag 'skills', '', placeholder: 'Enter skills...' %>
+  </div>
+  <h4>And interested in:</h4>
+  <div id="search-interests">
+    <%= text_field_tag 'interests', '', placeholder: 'Enter interests...' %>
+  </div>
+  <h4>They are:</h4>
+  <div id="search-status">
+    <%= check_box_tag 'Casually looking' %> Casually looking<br />
+    <%= check_box_tag 'On the prowl' %> On the prowl<br />
+    <%= check_box_tag 'Happily matched' %> Happily matched<br />
+    <%= check_box_tag 'On the rebound' %> On the rebound<br />
+    <%= check_box_tag 'Open relationship' %> Open relationship<br />
+  </div>
+  <h4>And have gotten:</h4>
+  <div id="search-milestone">
+    <%= check_box_tag 'Nowhere' %> Nowhere<br />
+    <%= check_box_tag 'Ideas flowing' %> Ideas flowing<br />
+    <%= check_box_tag 'Prototyped products' %> Prototyped products<br />
+    <%= check_box_tag 'People to use' %> People to use<br />
+  </div>
+  <h4>They are looking for a:</h4>
+  <div id="search-looking-for">
+    <%= check_box_tag 'Developer' %> Developer<br />
+    <%= check_box_tag 'Designer' %> Designer<br />
+    <%= check_box_tag 'Business Developer' %> Business Developer<br />
+    <%= check_box_tag 'Advisor' %> Advisor<br />
+  </div>
+  <div id="search-button">Search</div>
+</div>
+
+<div id="search-results">
+  <table>
+    <% @users.each do |u| %>
+      <% if u != current_user %>
+        <%= render partial: 'user_snippit', locals: { u: u } %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
