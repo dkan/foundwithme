@@ -216,7 +216,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   config.omniauth :linkedin, ENV['LINKED_IN_USER_TOKEN'], ENV['LINKED_IN_SECRET_TOKEN'],
     :scope => 'r_fullprofile r_emailaddress',
-    :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "skills"]
+    :fields => ["id", "email-address", "first-name", "last-name", "headline", "industry", "picture-url", "public-profile-url", "location", "skills", "educations", "interests", "employments"]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

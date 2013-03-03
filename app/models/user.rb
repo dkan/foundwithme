@@ -35,15 +35,15 @@ class User < ActiveRecord::Base
   end
   
   def update_linkedin_info(omniauth)
-    # Remove old info
-    self.user_skills.destroy_all
-    
     build_skills(omniauth)
   end
   
   def build_skills(omniauth)
     skills = Skill.get_skill_ids_from_omniauth(omniauth)
-    skills.each do |skill| 
+    
+    new_skills = skills - self.user_skills.map(&:skill_id) 
+    
+    new_skills.each do |skill| 
       self.user_skills.build(skill_id: skill)
     end
   end
