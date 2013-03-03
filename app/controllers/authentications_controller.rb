@@ -1,12 +1,11 @@
 class AuthenticationsController < ApplicationController
   def create
     omniauth = request.env["omniauth.auth"]
-    #raise omniauth.to_yaml
+    #raise omniauth.extra.raw_info.lastModifiedTimestamp.inspect#lastModificationTimestamp.inspect
     
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      authentication.user.update_linkedin_info(omniauth)
-      authentication.user.save!
+      authentication.user.update_linkedin_info!(omniauth, :all)#session[:update_linkedin_mode])
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user 
       current_user.create_omniauth(omniauth)
