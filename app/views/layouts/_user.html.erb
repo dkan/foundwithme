@@ -2,8 +2,8 @@
   <script type="text/javascript">
     var currentUser = <%= raw(current_user.to_json) %>;
     currentUser['skills'] = <%= raw(skills_for(current_user).to_json) %>;
-    currentUser['employments'] = <%= raw(employments_for(current_user).to_json) %>;
-    currentUser['educations'] = <%= raw(educations_for(current_user).to_json) %>;
+    currentUser['employments'] = <%= raw(current_user.employments.to_json) %>;
+    currentUser['educations'] = <%= raw(current_user.educations.to_json) %>;
     var stripePublicKey = "<%= Rails.configuration.stripe[:publishable_key] %>";
   </script>
 <% else %>
