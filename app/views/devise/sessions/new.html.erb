@@ -4,27 +4,69 @@
 			<h1>Found<span>with</span>Me</h1>
 		</div>
 		<div class="span3">
-			<a href="" class="btn btn-inverse pull-right">Sign in</a>
+			<a href="" class="btn btn-inverse pull-right" data-toggle="modal" data-target="#sign-in-modal">Sign in</a>
 		</div>
 	</div>
 </header>
 
+<div class="container">
+	<div class="row">
+		<div class="span4 offset8">
+			<p id="sign-up-intro">Connect with other professionals looking to help move startups forward.</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span8">
+
+			<div id="feature-carousel" class="carousel slide">
+			  <ol class="carousel-indicators">
+			    <li data-target="#feature-carousel" data-slide-to="0" class="active"></li>
+			  </ol>
+			  <!-- Carousel items -->
+			  <div class="carousel-inner">
+			    <div class="active item">
+			    	<%= image_tag("intro-slide-1.png") %>
+						<div class="carousel-caption">
+							<h4>Find someone who needs help with their startup or get help starting your own.</h4>
+						</div>
+			    </div>
+			  </div>
+			  <!-- Carousel nav -->
+			  <a class="carousel-control left" href="#feature-carousel" data-slide="prev">&lsaquo;</a>
+			  <a class="carousel-control right" href="#feature-carousel" data-slide="next">&rsaquo;</a>
+			</div>
+
+		</div>
+		<div class="span4">
+			<div id="form-sign-up">
+				<%= render "devise/registrations/new" %>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 
+<div id="sign-in-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div id="form-sign-in">
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+			<div><%= f.label :email %><br />
+			<%= f.email_field :email, :autofocus => true %></div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+			<div><%= f.label :password %><br />
+			<%= f.password_field :password %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+			<% if devise_mapping.rememberable? -%>
+			<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+			<% end -%>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+			<div><%= f.submit "Sign in" %></div>
+		<% end %>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+		<%= render "devise/shared/links" %>
+	</div>
+</div>
 
-<%= render "devise/shared/links" %>
+<footer>
+	&copy; 2013 FOUNDWITHME
+</footer>

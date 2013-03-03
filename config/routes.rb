@@ -1,4 +1,10 @@
 Foundwithme::Application.routes.draw do
+
+  get '/skills' => 'skills#index', :as => 'skills'
+  get '/skills/import' => 'skills#import', :as => 'import_skills'
+  resources :charges, only: [:create]
+  resources :messages, only: [:create]
+
   devise_for :users,
     controllers: { omniauth_callbacks: 'authentications', registrations: "registrations"}
 
