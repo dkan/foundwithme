@@ -1,0 +1,48 @@
+<br><br>
+<%= simple_nested_form_for @user, remote: true, allow_destroy: true do |f| %>
+
+  <h2> Education </h2>
+  <div id="educations">
+    <%= f.simple_fields_for :educations do |edu| %>
+       <%= edu.text_field :id, class: 'id', disabled: true, style: 'display:none' %>
+       <%= edu.label :institution %>
+       <%= edu.text_field :institution %>
+       
+       <%= edu.label :start_date %>
+       <%= edu.date_select :start_date %>
+
+       <%= edu.label :end_date %>
+       <%= edu.date_select :end_date %>
+
+       <%= edu.link_to_remove "(-) Remove", confirm: "Are you sure you want to remove?" %>
+    <% end %>
+    <%= f.link_to_add "(+) Add More", :educations %>      
+  <div>
+  
+  <h2> Work History </h2>
+   <%= f.simple_fields_for :employments do |emp| %>
+     <%= emp.text_field :id, class: 'id', disabled: true, style: 'display:none' %>
+     <div><%= emp.label :company %><br />
+     <%= emp.text_field :company %></div>
+
+     <div><%= emp.label :start_date %><br />
+     <%= emp.date_select :start_date %></div>
+
+     <div><%= emp.label :end_date %><br />
+     <%= emp.date_select :end_date %></div>
+
+     <%= emp.link_to_remove "(-) Remove", confirm: "Are you sure you want to remove?" %>
+  <% end %>
+  <%= f.link_to_add "(+) Add More", :employments %>
+
+  <h2> Skills </h2>
+  <% if @user.user_skills %>
+  <table>
+    <% @user.user_skills.each do |u| %>
+        <tr><td><%= u.skill.name %></td></tr>
+    <% end %>
+  </table>
+  <% end %>
+  
+  <%= f.submit "Save", class: 'submit' %>
+<% end %>

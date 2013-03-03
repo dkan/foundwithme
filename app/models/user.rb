@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :location, :first_name, :last_name
+  :location, :first_name, :last_name, :educations_attributes
 
   validates_presence_of :first_name, :last_name
   has_many :authentications
@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
   has_many :user_interests
   has_many :educations
   has_many :employments
+  
+  #accepts_nested_attributes_for :user_skills
+  #accepts_nested_attributes_for :user_interests
+  accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :employments
 
   geocoded_by :location
 
@@ -84,6 +89,11 @@ class User < ActiveRecord::Base
       educations.values[1].each do |edu|
         education = self.educations.find_or_initialize_by_institution(edu['schoolName'])
         education.degree = edu['degree']
+        if !education.degree.blank? && !edu['fieldOfStudy'].blank?
+          education.degree += ", " + edu['fieldOfStudy']
+        else
+          education.degree = edu['fieldOfStudy']
+        end
         
         education.start_date = edu['startDate'].nil? ? nil : edu['startDate']['year'].to_s + '-01-01'
         education.end_date = edu['endDate'].nil? ? nil : edu['endDate']['year'].to_s + '-01-01'

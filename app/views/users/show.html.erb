@@ -1,0 +1,23 @@
+<h2> Education </h2>
+
+<% if @user.educations %>
+<table>
+  <% @user.educations.each do |edu| %>
+      <tr>
+        <td><%= edu.institution %></td>
+        <td><%= edu.start_date %></td>
+        <td><%= edu.end_date %></td>
+      </tr>
+  <% end %>
+</table>
+<% end %>
+
+<h2> Skills </h2>
+
+<% if @user.user_skills %>
+<table>
+  <% @user.user_skills.each do |u| %>
+      <tr><td><%= u.skill.name %></td></tr>
+  <% end %>
+</table>
+<% end %>

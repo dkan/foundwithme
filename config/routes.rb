@@ -4,15 +4,18 @@ Foundwithme::Application.routes.draw do
 
   match '/auth/failure', :to => 'authentications#failure'
 
+  get '/profile', to: 'users#profile'
+
   authenticated :user do
     root :to => 'users#index'
-    get 'users', to: 'users#index', as: 'users_path'
+    resources :users
   end
   
   as :user do
     root to: "devise/sessions#new"
   end
 
+  resources :users, except: [:update, :delete]
   resources :skills, except: [:update, :delete]
 
   namespace :skills do

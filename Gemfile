@@ -17,6 +17,10 @@ gem 'postgres_ext'
 gem 'memcachier'
 gem 'dalli'
 
+# Forms
+gem 'simple_form'
+gem 'nested_form'
+
 # Authentication and Authorization
 gem 'devise'
 gem 'omniauth-linkedin'
