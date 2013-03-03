@@ -6,8 +6,8 @@ var App = {
   User: new User(currentUser),
   Interests: [],
   Skills: Root.initAttribute(currentUser.skills),
-  Employments: [],
-  Educations: []
+  Employments: Root.initAttribute(currentUser.employments),
+  Educations: Root.initAttribute(currentUser.educations)
 };
 
 $(window).on('load', function () {
