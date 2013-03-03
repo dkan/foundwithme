@@ -1,3 +1,32 @@
-<% if current_user %>
-hi <%= current_user.email %>
-<% end %>
+<header id="header-home" class="container">
+	<div class="row">
+		<div class="span9">
+			<h1>Found<span>with</span>Me</h1>
+		</div>
+		<div class="span3">
+			<a href="" id="btn-sign-in" class="btn btn-inverse pull-right">Sign in</a>
+		</div>
+	</div>
+</header>
+
+<div class="container">
+	<div class="row">
+		<div class="span4 offset8">
+			<p id="sign-up-intro">Connect with other professionals looking to help move startups forward.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="span8">
+		</div>
+		<div class="span4">
+			<div id="form-sign-up">
+
+				<%= render "devise/registrations/new" %>
+
+			</div>
+		</div>
+	</div>
+</div>

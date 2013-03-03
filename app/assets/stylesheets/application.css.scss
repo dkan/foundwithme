@@ -8,7 +8,7 @@
 
 @import "bootstrap";
 
-@import url('http://fonts.googleapis.com/css?family=Ubuntu:400,700');
+@import url('http://fonts.googleapis.com/css?family=Ubuntu:400,500,700');
 
 $gray: #555555;
 
@@ -42,4 +42,68 @@ body {
 			font-weight: normal;
 		}
 	}
+	#btn-sign-in {
+		margin-top: 15px;
+	}
+	#sign-up-intro {
+		color: #ffffff;
+		font-size: 22px;
+		font-weight: 500;
+		line-height: 26px;
+		margin-top: 20px;
+		text-shadow: 0 0 15px rgba(0,0,0,.75);
+	}
+	#form-sign-up {
+		background-color: rgba(0,0,0,.5);
+		border-radius: 10px;
+		padding: 20px;
+
+		form {
+			margin-bottom: 0;
+		}
+
+		input {
+			width: 246px;
+		}
+
+		#user_first_name, #user_last_name {
+			width: 109px;
+		}
+
+		#user_last_name {
+			margin-left: 10px;
+		}
+
+		#password-confirmation {
+			display: none;
+		}
+
+		#btn-sign-up {
+			width: 100%;
+		}
+
+		p {
+			color: #a4a4a4;
+			margin-top: 5px;
+			text-align: center;
+		}
+		#btn-sign-up-linkedin {
+			width: 234px;
+		}
+
+	}
+	#feature-carousel {
+		width: 490px;
+	}
+
+	footer {
+		background-position: bottom;
+		background-repeat: repeat-x;
+		bottom: 0;
+		display: none;
+		position: absolute;
+		text-align: center;
+		width: 100%;
+	}
+
 }
