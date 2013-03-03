@@ -1,6 +1,8 @@
 <% if user_signed_in? %>
   <script type="text/javascript">
     var currentUser = <%= raw(current_user.to_json) %>;
+    currentUser['skills'] = <%= raw(skills_for(current_user).to_json) %>;
+    var stripePublicKey = "<%= Rails.configuration.stripe[:publishable_key] %>";
   </script>
 <% else %>
   <script type="text/javascript">

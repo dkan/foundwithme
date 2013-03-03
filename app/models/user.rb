@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
   has_many :authentications
   has_many :user_skills
+  has_many :user_interests
+  has_many :educations
+  has_many :employments
 
   geocoded_by :location
 
@@ -31,20 +34,74 @@ class User < ActiveRecord::Base
 
   def create_omniauth(omniauth)
     self.authentications.build(provider: omniauth['provider'], uid: omniauth['uid'])
-    update_linkedin_info(omniauth)
+    update_linkedin_info(omniauth, :all)
   end
   
-  def update_linkedin_info(omniauth)
-    build_skills(omniauth)
+  # Only update when mode is passed
+  def update_linkedin_info(omniauth, mode=nil)
+    case mode
+      when :skills
+        build_skills(omniauth)
+      when :education
+        build_education(omniauth)
+      when :employment
+        build_employment(omniauth)
+      when :all
+        build_skills(omniauth)
+        build_education(omniauth)
+        build_employment(omniauth)
+        build_interests(omniauth)
+    end
+  end
+  
+  def update_linkedin_info!(omniauth, mode=nil)
+    self.update_linkedin_info(omniauth, mode)
+    self.save!
   end
   
   def build_skills(omniauth)
-    skills = Skill.get_skill_ids_from_omniauth(omniauth)
+    skills = Skill.get_ids_from_omniauth(omniauth)
     
     new_skills = skills - self.user_skills.map(&:skill_id) 
-    
     new_skills.each do |skill| 
       self.user_skills.build(skill_id: skill)
+    end
+  end
+  
+  def build_interests(omniauth)
+    ids = Interest.get_ids_from_omniauth(omniauth)
+    
+    new_interests = ids - self.user_interests.map(&:interest_id) 
+    new_interests.each do |id| 
+      self.user_interests.build(interest_id: id)
+    end
+  end
+  
+  def build_education(omniauth)
+    educations = omniauth.extra.raw_info.educations
+    if educations._total > 0
+      
+      educations.values[1].each do |edu|
+        education = self.educations.find_or_initialize_by_institution(edu['schoolName'])
+        education.degree = edu['degree']
+        
+        education.start_date = edu['startDate'].nil? ? nil : edu['startDate']['year'].to_s + '-01-01'
+        education.end_date = edu['endDate'].nil? ? nil : edu['endDate']['year'].to_s + '-01-01'
+      end
+    end
+  end
+  
+  def build_employment(omniauth)
+    positions = omniauth.extra.raw_info.positions
+    if positions._total > 0
+      
+      positions.values[1].each do |pos|
+        
+        position = self.employments.find_or_initialize_by_company(pos['company']["name"])
+        position.title = pos['title']
+        position.start_date = pos['startDate'].nil? ? nil : pos['startDate']['year'].to_s+'-01-01'
+        position.end_date = pos['endDate'].nil? ? nil : pos['endDate']['year'].to_s+'-01-01'
+      end
     end
   end
   

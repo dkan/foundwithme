@@ -1,2 +1,11 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+var Root = {
+  initAttribute: function (attributes) {
+    var obj = [];
+
+    for (var i = 0, attribute; attribute = attributes[i]; i++) {
+      obj.push(attribute);
+    }
+
+    return obj;
+  }
+}
