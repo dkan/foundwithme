@@ -1,6 +1,6 @@
-//= require_tree .
 //= require jquery-1.9.1.js
 //= require jquery_ujs
+//= require_tree .
 
 var App = {
   User: new User(currentUser),
