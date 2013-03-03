@@ -4,12 +4,13 @@ class AuthenticationsController < ApplicationController
     
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      flash[:notice] = "Signed in successfully."
+      authentication.user.update_linkedin_info(omniauth)
+      authentication.user.save!
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user 
-      current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      flash[:notice] = "Authentication successful."
-      redirect_to root_path
+      current_user.create_omniauth(omniauth)
+      current_user.save!
+      redirect_to after_sign_in_path_for(current_user)
     else
       user = User.new
       user.attr_from_omniauth(omniauth)

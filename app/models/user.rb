@@ -29,20 +29,31 @@ class User < ActiveRecord::Base
     end
   end
 
-  def apply_omniauth(omniauth)
+  def create_omniauth(omniauth)
     self.authentications.build(provider: omniauth['provider'], uid: omniauth['uid'])
+    update_linkedin_info(omniauth)
+  end
+  
+  def update_linkedin_info(omniauth)
+    # Remove old info
+    self.user_skills.destroy_all
+    
+    build_skills(omniauth)
+  end
+  
+  def build_skills(omniauth)
     skills = Skill.get_skill_ids_from_omniauth(omniauth)
     skills.each do |skill| 
       self.user_skills.build(skill_id: skill)
     end
   end
-
+  
   def attr_from_omniauth(auth_info)
     self.first_name ||= auth_info.info.first_name
     self.last_name ||= auth_info.info.last_name
     self.email = (self.email.blank?) ? auth_info.info.email : self.email
     self.password = Devise.friendly_token[0,20]
-    self.apply_omniauth(auth_info)
+    self.create_omniauth(auth_info)
 
     self
   end
