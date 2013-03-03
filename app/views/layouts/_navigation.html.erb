@@ -6,7 +6,9 @@
           <div class="span10">
               <a href="/" class="logo"><strong>Found with me</strong></a>
           </div>
+        <% if current_user %>
         <div class="span1"><%= link_to "Logout", destroy_user_session_path, method: :delete %></div>
+        <% end %>
       </div>
     </div>
   </nav>
