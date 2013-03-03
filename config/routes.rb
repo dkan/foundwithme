@@ -6,7 +6,7 @@ Foundwithme::Application.routes.draw do
 
   authenticated :user do
     root :to => 'users#index'
-    get 'users', to: 'users#index', as: 'users_path'
+    get 'users', to: 'users#index', as: :users
   end
   
   as :user do

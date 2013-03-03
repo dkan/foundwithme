@@ -15,8 +15,7 @@ class SkillsController < ApplicationController
       if @skill.present?
         format.json { render json: @skill, status: :ok }
       else
-Rails.logger.debug 'hi'
-        format.json { render status: :error, message: 'Skill not found' }
+        format.json { render json: 'Skill not found', status: :error }
       end
     end
   end
@@ -33,6 +32,6 @@ Rails.logger.debug 'hi'
   private
 
   def get_skill
-    @skill = Skill.find(params[:id])
+    @skill = Skill.find(params[:skill_id]) rescue nil
   end
 end
