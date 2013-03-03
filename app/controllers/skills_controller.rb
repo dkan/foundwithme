@@ -15,6 +15,7 @@ class SkillsController < ApplicationController
       if @skill.present?
         format.json { render json: @skill, status: :ok }
       else
+Rails.logger.debug 'hi'
         format.json { render status: :error, message: 'Skill not found' }
       end
     end
