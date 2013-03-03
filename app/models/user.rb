@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
   has_many :authentications
+  has_many :user_skills
 
   geocoded_by :location
 
@@ -29,17 +30,20 @@ class User < ActiveRecord::Base
   end
 
   def apply_omniauth(omniauth)
-    self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    self.authentications.build(provider: omniauth['provider'], uid: omniauth['uid'])
+    skills = Skill.get_skill_ids_from_omniauth(omniauth)
+    skills.each do |skill| 
+      self.user_skills.build(skill_id: skill)
+    end
   end
 
   def attr_from_omniauth(auth_info)
-    #self.first_name ||= auth_info.info.first_name
-    #self.last_name ||= auth_info.info.last_name
+    self.first_name ||= auth_info.info.first_name
+    self.last_name ||= auth_info.info.last_name
     self.email = (self.email.blank?) ? auth_info.info.email : self.email
     self.password = Devise.friendly_token[0,20]
     self.apply_omniauth(auth_info)
 
     self
   end
-
 end
