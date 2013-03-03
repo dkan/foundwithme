@@ -7,6 +7,7 @@ gem 'rails', '~> 3.2.11'
 gem 'rake', '~> 10.0.3'
 gem 'unicorn'
 gem 'geocoder'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # Database
 gem 'pg'

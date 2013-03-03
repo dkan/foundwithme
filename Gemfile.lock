@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: a1ab276487c9fc678a5cd23b8f87bcd4e04f2b10
+  specs:
+    stripe (1.7.11)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -168,6 +176,7 @@ DEPENDENCIES
   rake (~> 10.0.3)
   rest-client
   sass-rails (~> 3.2.3)
+  stripe!
   taps
   therubyracer
   uglifier (>= 1.0.3)

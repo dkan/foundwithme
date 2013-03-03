@@ -9,10 +9,21 @@
 
 <%= render 'layouts/navigation' %>
 
+<div id="flash">
+  <% flash.each do |key, value| %>
+      <% if key != "timedout" %>
+      <div class="alert alert-<%= key %>">
+          <%= value.html_safe %>
+          <a class="close" data-dismiss="alert">&#215;</a>
+      </div>
+      <% end %>
+  <% end %>
+</div>
 <%= yield %>
 
 <%= render 'layouts/user' %>
 <%= javascript_include_tag "application" %>
+<script src="https://checkout.stripe.com/v2/checkout.js"></script>
 
 </body>
 </html>
