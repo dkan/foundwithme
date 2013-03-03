@@ -10,6 +10,35 @@ var App = {
   Educations: []
 };
 
+var token = function(res){
+  $.ajax({
+    type: 'post',
+    url: '/charges',
+    data: { stripe_token: res.id },
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function (data, stat, xhr) {
+      if (data['success']) {
+        App.User.paid = true;
+        $('#flash').html(
+          '<div class="alert alert-success">' +
+              data["success"] +
+              '<a class="close" data-dismiss="alert">&#215;</a>' +
+          '</div>'
+        )
+      } else {
+        $('#flash').html(
+          '<div class="alert alert-error">' +
+              data["error"] +
+              '<a class="close" data-dismiss="alert">&#215;</a>' +
+          '</div>'
+        )          }
+    },
+    dataType: 'json'
+  });
+};
+
 $(window).on('load', function () {
   /*
   $.ajax({
@@ -27,33 +56,6 @@ $(window).on('load', function () {
 
 $(document).on('ready', function () {
   $('#customStripeButton').click(function(){
-    var token = function(res){
-      $.ajax({
-        type: 'post',
-        url: '/charges',
-        data: { stripe_token: res.id },
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-        },
-        success: function (data, stat, xhr) {
-          if (data['success']) {
-            $('#flash').html(
-              '<div class="alert alert-success">' +
-                  data["success"] +
-                  '<a class="close" data-dismiss="alert">&#215;</a>' +
-              '</div>'
-            )
-          } else {
-            $('#flash').html(
-              '<div class="alert alert-error">' +
-                  data["error"] +
-                  '<a class="close" data-dismiss="alert">&#215;</a>' +
-              '</div>'
-            )          }
-        },
-        dataType: 'json'
-      });
-    };
 
     StripeCheckout.open({
       key:         stripePublicKey,

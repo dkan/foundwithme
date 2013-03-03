@@ -20,6 +20,21 @@ $(document).ready(function(){
     }
   });
 
+  $('.contact-user').on('click', function(){
+    if (App.User.paid === true){
+      console.log('PAID!');
+    } else {
+      StripeCheckout.open({
+        key:         stripePublicKey,
+        address:     false,
+        amount:      500,
+        name:        'Monthly Subscription',
+        panelLabel:  'Subscribe',
+        token:       token
+      });
+    }
+  });
+
   $('#search-button').on('click', function(){
     $.ajax({
       type: 'get',
