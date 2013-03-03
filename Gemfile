@@ -13,6 +13,7 @@ gem 'postgres_ext'
 
 # Authentication and Authorization
 gem 'devise'
+gem 'omniauth-linkedin'
 gem 'cancan'
 
 # API
