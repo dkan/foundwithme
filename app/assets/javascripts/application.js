@@ -53,9 +53,6 @@ $(window).on('load', function () {
     }
   });
   */
-});
-
-$(document).on('ready', function () {
   $('#customStripeButton').click(function(){
 
     StripeCheckout.open({
@@ -69,4 +66,8 @@ $(document).on('ready', function () {
 
     return false;
   });
+});
+
+$(document).on('ready', function () {
+
 });
