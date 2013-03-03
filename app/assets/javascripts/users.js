@@ -20,6 +20,60 @@ $(document).ready(function(){
     }
   });
 
+  $('.contact-user').on('click', function(){
+    if (App.User.paid === true){
+      $('#email-button').data('id', $(this).data('id'));
+      $('#contactModalLabel').html('Email ' + $(this).data('name'))
+      $('#contactModal').modal();
+    } else {
+      StripeCheckout.open({
+        key:         stripePublicKey,
+        address:     false,
+        amount:      500,
+        name:        'Monthly Subscription',
+        panelLabel:  'Subscribe',
+        token:       token
+      });
+    }
+  });
+
+  $('#email-button').on('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/messages',
+      data: {
+        message: {
+          sender_id: App.User.id,
+          recipient_id: $('#email-button').data('id'),
+          body: $('.email-body').val()
+        }
+      },
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      },
+      success: function (data, stat, xhr) {
+        if (data['success']) {
+          $('.email-body').val('');
+          $('#flash').html(
+            '<div class="alert alert-success">' +
+                data["success"] +
+                '<a class="close" data-dismiss="alert">&#215;</a>' +
+            '</div>'
+          )
+        } else {
+          $('#flash').html(
+            '<div class="alert alert-error">' +
+                data["error"] +
+                '<a class="close" data-dismiss="alert">&#215;</a>' +
+            '</div>'
+          )
+        }
+        $('#contactModal').modal('toggle')
+      },
+      dataType: 'json'
+    });
+  });
+
   $('#search-button').on('click', function(){
     $.ajax({
       type: 'get',

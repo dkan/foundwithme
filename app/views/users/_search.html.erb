@@ -12,7 +12,10 @@
   </div>
   <h4>They are skilled in:</h4>
   <div id="search-skills">
-    <%= text_field_tag 'skills', '', placeholder: 'Enter skills...' %>
+    <%= form_for :skills, url: { controller: 'skills' }, method: :get, remote: true do |f| %>
+      <%= f.text_field :id, placeholder: 'Enter skills...' %>
+      <%= submit_tag 'submit' %>
+    <% end %>
   </div>
   <h4>And interested in:</h4>
   <div id="search-interests">
