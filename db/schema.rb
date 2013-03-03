@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130303194723) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "milestone"
+    t.boolean  "paid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,8 +1,9 @@
 Foundwithme::Application.routes.draw do
-  
+
   get '/skills' => 'skills#index', :as => 'skills'
   get '/skills/import' => 'skills#import', :as => 'import_skills'
-  
+  resources :charges, only: [:create]
+
   devise_for :users,
     controllers: { omniauth_callbacks: 'authentications', registrations: "registrations"}
 
@@ -17,5 +18,4 @@ Foundwithme::Application.routes.draw do
     root to: "devise/sessions#new"
   end
 
-  #root to: 'root#index'
 end
