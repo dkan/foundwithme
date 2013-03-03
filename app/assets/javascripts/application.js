@@ -1,5 +1,6 @@
 //= require jquery-1.9.1.js
 //= require jquery_ujs
+//= require bootstrap
 //= require_tree .
 
 var App = {
