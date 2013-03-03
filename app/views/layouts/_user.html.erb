@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <script type="text/javascript">
+    var currentUser = <%= current_user.to_json %>;
+  </script>
+<% else %>
+  <script type="text/javascript">
+    var currentUser = null;
+  </script>
+<% end %>

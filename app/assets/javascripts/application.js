@@ -3,7 +3,7 @@
 //= require jquery_ujs
 
 var App = {
-  User: new User(),
+  User: new User(currentUser),
   Interests: [],
   Skills: [],
   Employments: [],
@@ -11,6 +11,18 @@ var App = {
 };
 
 $(window).on('load', function () {
+  /*
+  $.ajax({
+    async: true,
+    type: 'get',
+    url: 'user/SOME ID',
+    dataType: 'json',
+    data: null,
+    success: function (data, textStatus, xhr) {
+      // Do something.
+    }
+  });
+  */
 });
 
 $(document).on('ready', function () {
