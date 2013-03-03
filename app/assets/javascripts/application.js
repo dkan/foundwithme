@@ -5,7 +5,7 @@
 var App = {
   User: new User(currentUser),
   Interests: [],
-  Skills: [],
+  Skills: Root.initAttribute(currentUser.skills),
   Employments: [],
   Educations: []
 };
