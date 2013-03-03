@@ -1,0 +1,45 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+@import "bootstrap";
+
+@import url('http://fonts.googleapis.com/css?family=Ubuntu:400,700');
+
+$gray: #555555;
+
+body {
+	color: $gray;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 14px;
+}
+
+/**  Non-Logged In View  **/
+.sessions-new {
+	background-image: url('bg-home.jpg');
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	.navbar {
+		display: none;
+	}
+	#header-home {
+		margin-top: 30px;
+	}
+
+	h1 {
+		color: #ffffff;
+		font-size: 62px;
+		text-shadow: 0 0 15px rgba(0,0,0,.75);
+		text-transform: uppercase;
+
+		span {
+			font-weight: normal;
+		}
+	}
+}

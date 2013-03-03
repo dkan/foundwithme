@@ -1,13 +1,14 @@
 //= require jquery-1.9.1.js
 //= require jquery_ujs
+//= require bootstrap
 //= require_tree .
 
 var App = {
   User: new User(currentUser),
   Interests: [],
   Skills: Root.initAttribute(currentUser.skills),
-  Employments: [],
-  Educations: []
+  Employments: Root.initAttribute(currentUser.employments),
+  Educations: Root.initAttribute(currentUser.educations)
 };
 
 var token = function(res){
