@@ -5,6 +5,7 @@ function User (currentUser) {
   this.first_name = null;
   this.last_name = null;
   this.bio = null;
+  this.paid = null;
 
   this.location = null;
   this.latitude = null;
@@ -25,6 +26,7 @@ function User (currentUser) {
       obj.first_name = currentUser['first_name'];
       obj.last_name = currentUser['last_name'];
       obj.bio = currentUser['bio'];
+      obj.paid = currentUser['paid'];
 
       obj.location = currentUser['location'];
       obj.latitude = currentUser['latitude'];

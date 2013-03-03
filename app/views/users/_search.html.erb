@@ -12,8 +12,8 @@
   </div>
   <h4>They are skilled in:</h4>
   <div id="search-skills">
-    <%= form_for :skills, url: { controller: 'skills' }, method: :get, remote: true do |f| %>
-      <%= f.text_field :id, placeholder: 'Enter skills...' %>
+    <%= form_tag skill_path(:id), method: :get, remote: true, 'data-type' => :json do |f| %>
+      <%= text_field_tag :skill_id, nil, placeholder: 'Enter skills...' %>
       <%= submit_tag 'submit' %>
     <% end %>
   </div>
