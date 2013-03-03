@@ -5,10 +5,7 @@
 
 var App = {
   User: new User(currentUser),
-  Interests: [],
-  Skills: Root.initAttribute(currentUser.skills),
-  Employments: Root.initAttribute(currentUser.employments),
-  Educations: Root.initAttribute(currentUser.educations)
+  version: 0.1
 };
 
 var token = function(res){

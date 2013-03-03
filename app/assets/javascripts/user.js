@@ -7,11 +7,16 @@ function User (currentUser) {
   this.bio = null;
   this.paid = null;
 
-  this._location = null;
+  this.location = null;
   this.latitude = null;
   this.longitude = null;
 
-  this._status = null;
+  this.status = null;
+
+  this.Interests = [];
+  this.Skills = [];
+  this.Employments = [];
+  this.Educations = [];
 
   var initialize = function (obj, currentUser) {
     if (currentUser !== null) {
@@ -23,11 +28,15 @@ function User (currentUser) {
       obj.bio = currentUser['bio'];
       obj.paid = currentUser['paid'];
 
-      obj._location = currentUser['location'];
+      obj.location = currentUser['location'];
       obj.latitude = currentUser['latitude'];
       obj.longitude = currentUser['longitude'];
 
-      obj._status = currentUser['status'];
+      obj.status = currentUser['status'];
+
+      obj.Skills = Root.initAttribute(currentUser.skills);
+      obj.Employments = Root.initAttribute(currentUser.employments);
+      obj.Educations = Root.initAttribute(currentUser.educations);
     }
   };
 
