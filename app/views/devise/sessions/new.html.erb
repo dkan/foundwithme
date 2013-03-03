@@ -1,4 +1,17 @@
-<h2>Sign in</h2>
+<header id="header-home" class="container">
+	<div class="row">
+		<div class="span9">
+			<h1>Found<span>with</span>Me</h1>
+		</div>
+		<div class="span3">
+			<a href="" class="btn btn-inverse pull-right">Sign in</a>
+		</div>
+	</div>
+</header>
+
+
+
+
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
