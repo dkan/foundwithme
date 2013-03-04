@@ -176,7 +176,7 @@ a {
 /**  Search Page  **/
 
 #search-container {
-	margin-top:70px;
+	margin-top:90px;
 
 	.badge {
 		cursor: pointer;
@@ -286,6 +286,25 @@ a {
 			&:last-child {
 				margin-bottom: 0;
 			}
+		}
+		i.status {
+			background: url('icon-statuses.png');
+			display: inline-block;
+			height: 10px;
+			width: 11px;
+
+			&.green {
+				background-position: 0 0;
+			}
+
+			&.yellow {
+				background-position: 0 -13px;
+			}
+
+			&.red {
+				background-position: 0 -27px;
+			}
+
 		}
 	}
 }
