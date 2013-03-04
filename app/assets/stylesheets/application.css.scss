@@ -359,6 +359,12 @@ a {
 
 	form {
 		margin: 0;
+
+		label {
+			display:inline-block;
+			padding-top: 4px;
+			vertical-align: top;
+		}
 	}
 }
 
