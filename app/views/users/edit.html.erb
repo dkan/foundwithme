@@ -1,5 +1,5 @@
 <br><br>
-<%= simple_nested_form_for @user, remote: true do |f| %>
+<%= simple_nested_form_for @user, html: { id: 'user-edit-form'}, remote: true do |f| %>
 
   <h2> Education </h2>
   <div id="educations">
@@ -34,15 +34,31 @@
      <%= emp.link_to_remove "(-) Remove", confirm: "Are you sure you want to remove?" %>
   <% end %>
   <%= f.link_to_add "(+) Add More", :employments %>
-
-  <h2> Skills </h2>
-  <% if @user.user_skills %>
+  
+  <!-- <% if @user.user_skills %>
   <table>
     <% @user.user_skills.each do |u| %>
         <tr><td><%= u.skill.name %></td></tr>
     <% end %>
   </table>
-  <% end %>
+  <% end %> -->
   
-  <%= f.submit "Save", class: 'submit' %>
+  <%#= f.submit "Save", class: 'submit' %>
 <% end %>
+
+<div class="skills_template" style="display:none">
+  <div class="skill"><%= text_field_tag "name[]" , '' %></div>
+</div>
+<%= form_tag update_skills_path, id: 'skills-form', remote: true do %>
+  <% skills_for(current_user).each do |s| %>
+  <div class ="skill">
+    <%= hidden_field_tag "skills[]", s[:id] %>
+    <%= s[:name] %>
+    <a href="#" onclick="$(this).parent().remove();">x</a>
+  </div>
+  <% end %>
+  <a href="#" onclick="$('#skills_form_submit').before($('.skills_template').html()); return false;">(+) Add More</a>
+<% end %>
+
+  <%= submit_tag "Save", class: 'submit', id: 'skills_form_submit',
+     onclick: "$('.skills_form').submit(); $('user-edit-form').submit(); " %>
