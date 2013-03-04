@@ -114,6 +114,11 @@ a {
 		}
 		#btn-sign-up-linkedin {
 			width: 234px;
+
+			img {
+				vertical-align: text-top;
+				margin-top: 1px;
+			}
 		}
 
 	}
@@ -121,6 +126,14 @@ a {
 		width: 490px;
 		max-width: 100%;
 	}
+
+}
+
+#btn-sign-in-linkedin {
+				img {
+				vertical-align: text-top;
+				margin-top: 1px;
+			}
 
 }
 
