@@ -9,8 +9,10 @@
         </div>
 
         <div class="pull-right">
-            <a href="" class="btn btn-info pull-right" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
-            <span class="user-status"><i class="status green"></i> User Status</span>
+            <a class="btn btn-info pull-right contact-user" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
+            <% if @user.status %>
+              <span class="user-status"><i class="status green"></i> <%= @user.status %></span>
+            <% end %>
 
         </div>
 
@@ -18,8 +20,14 @@
 
           <p>
             <span class="user-name"><%= @user.first_name %> <%= @user.last_name %></span><br>
-            <span class="user-location">San Francisco, CA</span><br>
-            <span class="user-role">Developer</span> looking for <span class="user-role-want">Business Developer</span>
+            <span class="user-location"><%= @user.location %></span><br>
+            <% if @user.role && @user.looking_for %>
+              <span class="user-role"><%= @user.role %></span> looking for <span class="user-role-want"><%= @user.looking_for %></span>
+            <% elsif @user.role %>
+              <span class="user-role"><%= @user.role %></span>
+            <% elsif @user.looking_for%>
+              Looking for <span class="user-role-want"><%= @user.looking_for %></span><br>
+            <% end %>
           </p>
 
         </div>
@@ -82,4 +90,17 @@
   </div>
 </div>
 
+<div id="contactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="contactModalLabel"></h3>
+  </div>
+  <div class="modal-body">
+    <%= text_area_tag 'body', '', class: 'email-body' %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="email-button" class="btn btn-primary">Send email</button>
+  </div>
+</div>
 
