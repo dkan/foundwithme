@@ -75,6 +75,9 @@ $(document).on('ready', function () {
   $('#search, .go-back, .go-back-me').on('click', function (event) {
     $('#search-wrapper').scrollTo($('#search-results'), 800);
     $('#me-display').show();
+  	$('ul.nav li').removeClass('active');
+  	$('#search').parent().addClass('active');
+  	$('#nav-caret').removeClass().addClass('search');
     return false;
   });
 });
