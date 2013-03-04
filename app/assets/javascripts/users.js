@@ -60,31 +60,34 @@ $(document).ready(function () {
     },
     updater: function (item) {
       var type = $(this)[0].$element.attr('id').split('_')[0] + 's';
-
       if (type === 'skills') {
-        var _item = new Skill(SearchCache[item]);
-        if (Search.skills.indexOf(_item) === -1) {
-          Search.skills.push(_item);
+        if (skillExists(item) === false) {
+          var _item = new Skill(SearchCache[item]);
+          if (Search.skills.indexOf(_item) === -1) {
+            Search.skills.push(_item);
+          }
+          $('#skills-to-search').html('');
+          for (var i in Search.skills) {
+            $('#skills-to-search').append(
+              '<span data-id="' + Search.skills[i].id + '" name="' + Search.skills[i].name + '" class="badge badge-default skill-tag">' + Search.skills[i].name + ' <i class="icon-remove icon-white"></i></span>'
+            );
+          }
+          ajaxSearch();
         }
-        $('#skills-to-search').html('');
-        for (var i in Search.skills) {
-          $('#skills-to-search').append(
-            '<span data-id="' + Search.skills[i].id + '" name="' + Search.skills[i].name + '" class="badge badge-default skill-tag">' + Search.skills[i].name + ' <i class="icon-remove icon-white"></i></span>'
-          );
-        }
-        ajaxSearch();
       } else if (type === 'interests') {
-        var _item = new Interest(SearchCache[item]);
-        if (Search.interests.indexOf(_item) === -1) {
-          Search.interests.push(_item);
+        if (interestExists(item) === false) {
+          var _item = new Interest(SearchCache[item]);
+          if (Search.interests.indexOf(_item) === -1) {
+            Search.interests.push(_item);
+          }
+          $('#interests-to-search').html('');
+          for (var i in Search.interests) {
+            $('#interests-to-search').append(
+              '<span data-id="' + Search.interests[i].id + '" name="' + Search.interests[i].name + '" class="badge badge-default interest-tag">' + Search.interests[i].name + ' <i class="icon-remove icon-white"></i></span>'
+            );
+          }
+          ajaxSearch();
         }
-        $('#interests-to-search').html('');
-        for (var i in Search.interests) {
-          $('#interests-to-search').append(
-            '<span data-id="' + Search.interests[i].id + '" name="' + Search.interests[i].name + '" class="badge badge-default interest-tag">' + Search.interests[i].name + ' <i class="icon-remove icon-white"></i></span>'
-          );
-        }
-        ajaxSearch();
       }
     }
   });
@@ -246,6 +249,24 @@ $(document).ready(function () {
 
   $('#search-location').on('change', ajaxSearch);
 });
+
+var skillExists = function (item){
+  for (var i in Search.skills) {
+    if (Search.skills[i].name === SearchCache[item].name) {
+      return true;
+    }
+  }
+  return false;
+}
+
+var interestExists = function (item){
+  for (var i in Search.interests) {
+    if (Search.interests[i].name === SearchCache[item].name) {
+      return true;
+    }
+  }
+  return false;
+}
 
 var ajaxSearch = function (){
   Search.location = $('input#location').val();
