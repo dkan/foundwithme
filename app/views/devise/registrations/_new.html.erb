@@ -6,7 +6,7 @@
   </div>
   <div><%= f.email_field :email, :placeholder => "Email address" %></div>
   <div><%= f.password_field :password, :placeholder => "Password" %></div>
-  <div id="password-confirmation"><%= f.password_field :password_confirmation %></div>
+  <div><%= f.password_field :password_confirmation, :placeholder => "Confirm Password"  %></div>
   <div><%= f.submit "Sign up", :id => "btn-sign-up", :class => "btn btn-warning" %></div>
 <% end %>
 <p>or</p>
