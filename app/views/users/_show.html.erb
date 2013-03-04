@@ -53,7 +53,7 @@
           <% end %>
 
           <% if locals[:user] == current_user %>
-            <a href="#" onclick="showUserEdit();" class="btn btn-info"><i class="icon-edit icon-white"></i> Edit Profile</a><br>
+            <a href="#" onclick="showUserEdit(); return false;" class="btn btn-info"><i class="icon-edit icon-white"></i> Edit Profile</a><br>
             <a href="<%= omniauth_authorize_path(:user, :linkedin) %>" class="btn btn-info" id="btn-sync-linkedin"><i class="icon-refresh icon-white"></i> Sync with LinkedIn Profile</a><br>
           <% else %>
             <a class="btn btn-info pull-right contact-user" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
