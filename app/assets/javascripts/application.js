@@ -36,7 +36,7 @@ var token = function(res){
         )
       }
     },
-    dataType: 'json'
+    dataType: 'script'
   });
 };
 
@@ -68,7 +68,12 @@ $(document).on('ready', function () {
 
   $('#search, .go-back').on('click', function (event) {
     $('#search-wrapper').scrollTo($('#search-results'), 800);
-    $('#me-display').show();
+    $('#search-results-display').fadeOut(800);
+    setTimeout(function () {
+      $('#me-display').show();
+      $('#search-results-display').show();
+    }, 800);
+
     return false;
   });
 });
