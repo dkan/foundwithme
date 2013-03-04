@@ -225,12 +225,28 @@ var ajaxSearch = function (){
               '<p>' +
                 '<span class="user-full-name">' + data[i].first_name + ' ' + data[i].last_name + '</span><br>' +
                 '<span class="user-location">' + data[i].location + '</span><br>' +
-                '<span class="user-role">' + data[i].role + '</span> looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>' +
-                '<span class="user-current-status"><i class="status green"></i>' + data[i].status + '</span>' +
               '</p>' +
             '</div>' +
           '</div>'
         )
+        if (data[i].role && data[i].looking_for) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            '<span class="user-role">' + data[i].role + '</span> looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
+          )
+        } else if (data[i].role) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            '<span class="user-role">' + data[i].role + '</span>'
+          )
+        } else if (data[i].looking_for) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            'Looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
+          )
+        }
+        if (data[i].status) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            '<span class="user-current-status"><i class="status green"></i>' + data[i].status + '</span>'
+          )
+        }
       }
     },
     dataType: 'json'
