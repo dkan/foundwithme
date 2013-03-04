@@ -78,6 +78,7 @@ $(document).ready(function () {
   });
 
   $('#search-button').on('click', function (event) {
+    Search.location = $('input#location').val();
     $.ajax({
       type: 'get',
       url: '/users',

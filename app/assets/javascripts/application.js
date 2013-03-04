@@ -32,7 +32,8 @@ var token = function(res){
               data["error"] +
               '<a class="close" data-dismiss="alert">&#215;</a>' +
           '</div>'
-        )          }
+        )
+      }
     },
     dataType: 'json'
   });
