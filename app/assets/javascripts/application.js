@@ -65,7 +65,7 @@ $(document).on('ready', function () {
     return false;
   });
 
-  $('.go-back').on('click', function (event) {
+  $('#search, .go-back').on('click', function (event) {
     $('#search-wrapper').scrollTo($('#search-results'), 800);
     $('#me-display').show();
     return false;
