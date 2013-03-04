@@ -1,20 +1,12 @@
 var doIt = '<div class="container" id="info-container">' +
-'  <div class="go-back">' +
-'    <h2 style="cursor: pointer;">&lt;-</h2>' +
-'  </div>' +
 '  <div class="row">' +
-'    <div class="span10 offset1">' +
+'    <div class="span7 offset1">' +
+'    <div class="go-back">' +
+'    </div>' +
 '      <div class="clearfix">' +
 '        <div class="pull-left">' +
 '          <%= gravatar_image_tag(@user.email, :alt => @user.first_name, :gravatar => { :size => 200, :default => :mm }, :class => "user-avatar") %>' +
 '        </div>' +
-'        <div class="pull-right">' +
-'          <a class="btn btn-info pull-right contact-user" id="btn-info-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>';
-
-          <% if @user.status %>
-doIt += '            <span class="user-status"><i class="status green"></i> <%= @user.status %></span>';
-          <% end %>
-doIt += '        </div>' +
 '        <div class="pull-left">' +
 '          <p>' +
 '            <span class="user-name"><%= @user.first_name %> <%= @user.last_name %></span><br>' +
@@ -29,15 +21,18 @@ doIt += '              Looking for <span class="user-role-want"><%= @user.lookin
             <% end %>
 
 doIt += '          </p>' +
-'        </div>' +
-'        <div class="pull-left user-bio">' +
-'          <p><%= @user.bio %></p>' +
-'        </div>' +
+'          <a class="btn btn-info contact-user" id="btn-info-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>';
+
+          <% if @user.status %>
+doIt += '            <span class="user-status"><i class="status green"></i> <%= @user.status %></span>';
+          <% end %>
+doIt += '        </div>' +
 '      </div>' +
 '    </div>' +
 '  </div>' +
 '  <div class="row">' +
-'    <div class="span10 offset1">' +
+'    <div class="span7 offset1">' +
+'        <br><div class="user-bio"><p><%= @user.bio %></p></div>' +
 '        <h4>Skills</h4>';
 
         <% if @user.user_skills %>
