@@ -66,16 +66,52 @@ $(document).ready(function () {
         if (Search.skills.indexOf(_item) === -1) {
           Search.skills.push(_item);
         }
+        $('#skills-to-search').html('');
+        for (var i in Search.skills) {
+          $('#skills-to-search').append(
+            '<span data-id="' + Search.skills[i].id + '" name="' + Search.skills[i].name + '" class="badge badge-default skill-tag">' + Search.skills[i].name + ' <i class="icon-remove icon-white"></i></span>'
+          );
+        }
         ajaxSearch();
       } else if (type === 'interests') {
         var _item = new Interest(SearchCache[item]);
         if (Search.interests.indexOf(_item) === -1) {
           Search.interests.push(_item);
         }
+        $('#interests-to-search').html('');
+        for (var i in Search.interests) {
+          $('#interests-to-search').append(
+            '<span data-id="' + Search.interests[i].id + '" name="' + Search.interests[i].name + '" class="badge badge-default interest-tag">' + Search.interests[i].name + ' <i class="icon-remove icon-white"></i></span>'
+          );
+        }
         ajaxSearch();
       }
     }
   });
+
+  $('#skills-to-search').on('click', function (event){
+    if ($(event.target).is('.icon-remove')) {
+      for (var i in Search.skills) {
+        if (Search.skills[i].id === $($(event.target).parent()).data('id')) {
+          Search.skills.splice(i,1);
+        }
+      }
+      $(event.target).parent().remove();
+    }
+    ajaxSearch();
+  })
+
+  $('#interests-to-search').on('click', function (event){
+    if ($(event.target).is('.icon-remove')) {
+      for (var i in Search.interests) {
+        if (Search.interests[i].id === $($(event.target).parent()).data('id')) {
+          Search.interests.splice(i,1);
+        }
+      }
+      $(event.target).parent().remove();
+    }
+    ajaxSearch();
+  })
 
   $('div[id^=search-]').on('click', function (event) {
     if ($(event.target).is('span.checkbox')) {

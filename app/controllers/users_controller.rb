@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       @users = @users.joins(:user_interests).where(:user_interests => {interest_id: interest_ids})
         .group("users.id")
         .having("count(user_interests.user_id) = ?", interests_count) if params[:query][:interests]
+
       @users.to_a.delete(current_user)
     else
       @users = User.near([current_user.latitude, current_user.longitude], 100)
