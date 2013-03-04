@@ -9,6 +9,7 @@
 @import "bootstrap";
 
 $gray: #555555;
+$lightGray: #dddddd;
 $blue: #3495b7;
 $orange: #f79700;
 $borderBrown: rgba(108,81,51,.36);
@@ -156,7 +157,7 @@ a {
 		}
 	}
 	.logout {
-		color: $gray;
+		color: $lightGray;
 		display: inline-block;
 		margin-top: 9px;
 	}
@@ -290,7 +291,7 @@ a {
 		i.status {
 			background: url('icon-statuses.png');
 			display: inline-block;
-			height: 10px;
+			height: 9px;
 			width: 11px;
 
 			&.green {
