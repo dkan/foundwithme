@@ -63,10 +63,14 @@ $(document).ready(function () {
 
       if (type === 'skills') {
         var _item = new Skill(SearchCache[item]);
-        Search.skills.push(_item);
+        if (Search.skills.indexOf(_item) === -1) {
+          Search.skills.push(_item);
+        }
       } else if (type === 'interests') {
         var _item = new Interest(SearchCache[item]);
-        Search.interests.push(_item);
+        if (Search.interests.indexOf(_item) === -1) {
+          Search.interests.push(_item);
+        }
       }
     }
   });
