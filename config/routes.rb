@@ -4,8 +4,6 @@ Foundwithme::Application.routes.draw do
 
   match '/auth/failure', :to => 'authentications#failure'
 
-  get '/profile', to: 'users#profile'
-
   authenticated :user do
     root :to => 'users#index'
     resources :users
