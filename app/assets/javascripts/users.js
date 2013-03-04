@@ -8,6 +8,8 @@ var Search = {
   location: ''
 };
 
+var SearchCache = {};
+
 $(window).load(function () {
 });
 
@@ -29,6 +31,11 @@ $(document).ready(function () {
         dataType: 'json',
         data: data,
         success: function (data, textStatus, xhr) {
+          SearchCache = {};
+          for (var i = 0, d; d = data[i]; i++) {
+            SearchCache[d.name] = d;
+          }
+
           return process(data);
         }
       });
@@ -50,6 +57,17 @@ $(document).ready(function () {
       }
 
       return beginswith.concat(caseSensitive, caseInsensitive);
+    },
+    updater: function (item) {
+      var type = $(this)[0].$element.attr('id').split('_')[0] + 's';
+
+      if (type === 'skills') {
+        var _item = new Skill(SearchCache[item]);
+        Search.skills.push(_item);
+      } else if (type === 'interests') {
+        var _item = new Interest(SearchCache[item]);
+        Search.interests.push(_item);
+      }
     }
   });
 
