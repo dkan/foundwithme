@@ -2,10 +2,7 @@ class UsersController < ApplicationController
   def index
     if params[:query]
       @users = User.near(params[:query][:location], 100)
-      @users = @users.where(milestone: params[:query][:milestones]) if params[:query][:milestones]
-      @users = @users.where(status: params[:query][:statuses]) if params[:query][:statuses]
-      @users = @users.where(role: params[:query][:roles]) if params[:query][:roles]
-      @users = @users.where(looking_for: params[:query][:lookingFor]) if params[:query][:lookingFor]
+      @users = @users.where(sql_query)
     else
       @users = User.near([current_user.latitude, current_user.longitude], 100)
     end
@@ -39,5 +36,54 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+  end
+
+  def sql_query
+    query = ['']
+    if params[:query][:roles]
+      roles_query = ""
+      params[:query][:roles].each_with_index do |r, i|
+        roles_query += ' OR ' if i > 0
+        roles_query += 'role = ?'
+        query << r
+      end
+      query[0] += " AND (#{roles_query})"
+    end
+
+    if params[:query][:statuses]
+      statuses_query = ""
+      params[:query][:statuses].each_with_index do |s, i|
+        statuses_query += ' OR ' if i > 0
+        statuses_query += 'status = ?'
+        query << s
+      end
+      query[0] += " AND (#{statuses_query})"
+    end
+
+    if params[:query][:milestones]
+      milestones_query = ""
+      params[:query][:milestones].each_with_index do |m, i|
+        milestones_query += ' OR ' if i > 0
+        milestones_query += 'milestone = ?'
+        query << m
+      end
+      query[0] += " AND (#{milestones_query})"
+    end
+
+    if params[:query][:lookingFor]
+      looking_for_query = ""
+      params[:query][:lookingFor].each_with_index do |l, i|
+        looking_for_query += ' OR ' if i > 0
+        looking_for_query += 'looking_for = ?'
+        query << l
+      end
+      query[0] += " AND (#{looking_for_query})"
+    end
+
+    if query[0][0..4] == ' AND '
+      query[0].slice!(0..4)
+    end
+
+    return query
   end
 end
