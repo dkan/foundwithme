@@ -25,7 +25,7 @@
         </div>
 
         <div class="pull-left user-bio">
-          <p>This is a quick bio describing what I want and where I am at. Bacon ipsum dolor sit amet boudin spare ribs andouille prosciutto hamburger salami jowl. Kielbasa pancetta jerky beef prosciutto pork boudin beef ribs turkey ham short loin shank brisket, fatback filet mignon. Leberkas turducken short loin brisket. Salami cow sirloin brisket andouille tenderloin bacon doner frankfurter.</p>
+          <p><%= @user.bio %></p>
         </div>
 
       </div>
@@ -48,7 +48,7 @@
         <% if @user.employments %>
           <% @user.employments.each do |emp| %>
 
-            <span class="edu-name pull-right"><%= emp.start_date %> - <%= emp.end_date %></span>
+            <span class="edu-name pull-right"><%= emp.start_date.year %> - <%= emp.end_date ? emp.end_date.year : "Present" %></span>
             <span class="edu-year-range"><%= emp.company %></span>
             <p><%= emp.title %></p>
 
@@ -60,7 +60,7 @@
         <% if @user.educations %>
           <% @user.educations.each do |edu| %>
 
-            <span class="edu-name pull-right"><%= edu.start_date.year %> - <%= edu.end_date.year %></span>
+            <span class="edu-name pull-right"><%= edu.start_date.year %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>
             <span class="edu-year-range"><%= edu.institution %></span>
             <p>Education Description if any</p>
 
@@ -72,7 +72,7 @@
 
         <% if @user.user_interests %>
           <% @user.user_interests.each do |i| %>
-              <span class="badge badge-warning"><%= i %></span>
+              <span class="badge badge-warning"><%= i.interest.name %></span>
           <% end %>
         <% end %>
 

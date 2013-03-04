@@ -10,8 +10,16 @@
     <p>
       <span class="user-full-name"><%= u.first_name %> <%= u.last_name %></span><br>
       <span class="user-location"><%= u.location %></span><br>
-      <span class="user-role"><%= u.role %></span> looking for <span class="user-role-want"><%= u.looking_for %></span><br>
-      <span class="user-current-status"><i class="status green"></i><%= u.status %></span>
+      <% if u.role && u.looking_for %>
+        <span class="user-role"><%= u.role %></span> looking for <span class="user-role-want"><%= u.looking_for %></span><br>
+      <% elsif u.role %>
+        <span class="user-role"><%= u.role %></span>
+      <% elsif u.looking_for%>
+        Looking for <span class="user-role-want"><%= u.looking_for %></span><br>
+      <% end %>
+      <% if u.status %>
+        <span class="user-current-status"><i class="status green"></i><%= u.status %></span>
+      <% end %>
     </p>
   </div>
 </div>

@@ -9,7 +9,7 @@ class Interest < ActiveRecord::Base
     if interest_list
       interest_list = interest_list.split(',') 
       interest_list.each do |interest|
-        ids << self.find_or_create_by_name(interest.strip).id
+        ids << self.find_or_create_by_name(interest.strip.downcase).id
       end
     end    
     ids
