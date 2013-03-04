@@ -183,10 +183,6 @@ a {
 		margin-top: 9px;
 	}
 }
-#nav-caret {
-	position: relative;
-	top: 35px;
-}
 
 .users-index {
 
@@ -194,6 +190,31 @@ a {
 		left: -175px;
 	}
 }
+
+#nav-caret {
+	position: relative;
+	top: 35px;
+	-o-transition: .5s;
+	-ms-transition: .5s;
+	-moz-transition: .5s;
+	-webkit-transition: .5s;
+	transition: .5s;
+	transition-duration: .5s;
+
+	&.search {
+		left: -175px !important;
+	}
+	&.me {
+		left: -65px !important;
+	}
+}
+.badge {
+
+	a {
+		color: #ffffff;
+	}
+}
+
 
 /**  Search Page  **/
 
@@ -380,7 +401,7 @@ footer {
 	text-align: center;
 }
 
-.go-back {
+.go-back-me {
 	float: left;
 	margin-left: -70px;
 	background:url('icon-back.png');

@@ -1,7 +1,7 @@
 <div class="container" id="profile-container">
   <div class="row">
     <div class="span7 offset1">
-      <div class="go-back">
+      <div class="go-back-me">
       </div>
       <div class="clearfix">
 
@@ -115,9 +115,13 @@
 
     </div>
   </div>
-  <% if locals[:user] == current_user %>
-    <%= render 'users/edit', locals: { user: locals[:user] } %>
-  <% end %>
+  <div class="row">
+    <div class="span7 offset1"><br><br>
+      <% if locals[:user] == current_user %>
+        <%= render 'users/edit', locals: { user: locals[:user] } %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div id="contactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">

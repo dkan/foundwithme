@@ -295,7 +295,7 @@ var ajaxSearch = function (){
         $('#search-results').append('<div style="height: 100px;"></div>');
       } else {
         for (var i in data) {
-          var gravatar = 'http://www.gravatar.com/avatar/' + MD5(data[i].email)
+          var gravatar = 'http://www.gravatar.com/avatar/' + MD5(data[i].email) + '?d=mm'
           $('#search-results').append(
             '<div class="person clearfix">' +
               '<div class="pull-right">' +

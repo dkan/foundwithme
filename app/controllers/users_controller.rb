@@ -3,12 +3,12 @@ class UsersController < ApplicationController
     if params[:query]
       @users = User.near(params[:query][:location], 100)
       @users = @users.where(sql_query)
-      @users = @users.joins(:user_skills).where(:user_skills => {skill_id: skill_ids})
+      @users = @users.joins("LEFT OUTER JOIN user_skills ON users.id = user_skills.user_id").where(:user_skills => {skill_id: skill_ids})
         .group("users.id")
-        .having("count(user_skills.user_id) = ?", skills_count) if params[:query][:skills]
-      @users = @users.joins(:user_interests).where(:user_interests => {interest_id: interest_ids})
+        .having("count(distinct user_skills.skill_id) = ?", skills_count) if params[:query][:skills]
+      @users = @users.joins("LEFT OUTER JOIN user_interests ON users.id = user_interests.user_id").where(:user_interests => {interest_id: interest_ids})
         .group("users.id")
-        .having("count(user_interests.user_id) = ?", interests_count) if params[:query][:interests]
+        .having("count(distinct user_interests.interest_id) = ?", interests_count) if params[:query][:interests]
 
       @users.to_a.delete(current_user)
     else
