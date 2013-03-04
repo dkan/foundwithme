@@ -3,6 +3,13 @@ class UsersController < ApplicationController
     if params[:query]
       @users = User.near(params[:query][:location], 100)
       @users = @users.where(sql_query)
+      @users = @users.joins(:user_skills).where(:user_skills => {skill_id: skill_ids})
+        .group("users.id")
+        .having("count(user_id) = ?", skills_count) if params[:query][:skills]
+      @users = @users.joins(:user_interests).where(:user_interests => {interest_id: interest_ids})
+        .group("users.id")
+        .having("count(user_id) = ?", interests_count) if params[:query][:interests]
+      @users.to_a.delete(current_user)
     else
       @users = User.near([current_user.latitude, current_user.longitude], 100)
     end
@@ -16,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.json { render json: 'User updated.', status: :ok }
@@ -85,5 +92,33 @@ class UsersController < ApplicationController
     end
 
     return query
+  end
+
+  def skill_ids
+    ids = []
+    if params[:query][:skills]
+      params[:query][:skills].each_value do |v|
+        ids << v['id']
+      end
+    end
+    return ids
+  end
+
+  def skills_count
+    params[:query][:skills] ? params[:query][:skills].count : 0
+  end
+
+  def interest_ids
+    ids = []
+    if params[:query][:interests]
+      params[:query][:interests].each_value do |v|
+        ids << v['id']
+      end
+    end
+    return ids
+  end
+
+  def interests_count
+    params[:query][:interests] ? params[:query][:interests].count : 0
   end
 end

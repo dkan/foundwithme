@@ -64,9 +64,11 @@ $(document).ready(function () {
       if (type === 'skills') {
         var _item = new Skill(SearchCache[item]);
         Search.skills.push(_item);
+        ajaxSearch();
       } else if (type === 'interests') {
         var _item = new Interest(SearchCache[item]);
         Search.interests.push(_item);
+        ajaxSearch();
       }
     }
   });
@@ -192,8 +194,6 @@ $(document).ready(function () {
     ajaxSearch();
     return false;
   });
-
-  $('#search-bar').change(ajaxSearch);
 });
 
 var ajaxSearch = function (){
@@ -206,6 +206,7 @@ var ajaxSearch = function (){
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
     },
     success: function (data, stat, xhr) {
+console.log(data);
       $('#search-results').html('')
       for (var i in data) {
         $('#search-results').append(
