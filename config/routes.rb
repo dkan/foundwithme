@@ -22,11 +22,13 @@ Foundwithme::Application.routes.draw do
   end
 
   resources :users, except: [:update, :delete]
-  resources :skills, except: [:update, :delete]
 
   namespace :skills do
     get :import
+    get :search
   end
+
+  resources :skills, except: [:update, :delete]
 
   resources :charges, only: [:create]
 end

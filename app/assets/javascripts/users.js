@@ -12,6 +12,39 @@ $(window).load(function () {
 });
 
 $(document).ready(function () {
+  $('#skill_name').typeahead({
+    source: function (query, process) {
+      return $.ajax({
+        async: true,
+        type: 'get',
+        url: '/skills/search',
+        dataType: 'json',
+        data: { skill_name: query },
+        success: function (data, textStatus, xhr) {
+          return process(data);
+        }
+      });
+    },
+    items: 10,
+    matcher: function (item) {
+      return ~item.name.toLowerCase().indexOf(this.query.toLowerCase());
+    },
+    sorter: function (items) {
+      var beginswith = [];
+      var caseSensitive = [];
+      var caseInsensitive = [];
+      var item;
+
+      while (item = items.shift()) {
+        if (!item.name.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item.name)
+        else if (~item.name.indexOf(this.query)) caseSensitive.push(item.name)
+        else caseInsensitive.push(item.name)
+      }
+
+      return beginswith.concat(caseSensitive, caseInsensitive);
+    }
+  });
+
   $('div[id^=search-]').on('click', function (event) {
 
     if ($(event.target).is('span.checkbox')) {
