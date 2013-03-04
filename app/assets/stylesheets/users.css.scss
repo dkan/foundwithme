@@ -21,6 +21,11 @@ $borderBrown: rgba(108,81,51,.36);
 		margin-right: 20px;
 	}
 
+	.user-status {
+		display:block;
+		margin-bottom:10px;
+	}
+
 	.user-name {
 		display: inline-block;
 		font-size: 36px;
@@ -47,7 +52,7 @@ $borderBrown: rgba(108,81,51,.36);
 
 	}
 
-	#btn-send-msg, #btn-info-send-msg {
+	#btn-send-msg, #btn-info-send-msg, #btn-sync-linkedin {
 		margin-top: 10px;
 	}
 
