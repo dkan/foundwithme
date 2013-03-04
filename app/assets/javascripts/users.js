@@ -199,6 +199,8 @@ $(document).ready(function () {
     ajaxSearch();
     return false;
   });
+
+  $('#search-location').on('change', ajaxSearch);
 });
 
 var ajaxSearch = function (){
