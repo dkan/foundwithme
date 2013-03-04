@@ -9,13 +9,14 @@
       
       <%= form_tag update_user_skills_path, id: 'skills-form', remote: true do %>
         <% skills_for(current_user).each do |s| %>
-          <%= hidden_field_tag "skills[]", s[:id] %>
           <span class="badge badge-warning"><%= s[:name] %>
-            <a href="#" onclick="$(this).parent().parent().remove(); return false;">x</a>
+            <%= hidden_field_tag "skills[]", s[:id] %>
+            <a href="#" onclick="$(this).parent().remove(); return false;">x</a>
           </span>
         <% end %>
+        
       <% end %>
-      <a href="#" onclick="$('#skills-form).append($('.skills_template').html()); return false;">(+) Add More</a>
+      <a href="#" onclick="$('#skills-form').append($('.skills_template').html()); return false;">(+) Add More</a>
 
       <%= simple_nested_form_for locals[:user], html: { id: 'user-edit-form'}, remote: true do |f| %>
 
@@ -50,9 +51,9 @@
       
       <%= form_tag update_user_interests_path, id: 'interests-form', remote: true do %>
         <% interests_for(current_user).each do |s| %>
-          <%= hidden_field_tag "skills[]", s[:id] %>
           <span class="badge badge-warning"><%= s[:name] %>
-            <a href="#" onclick="$(this).parent().parent().remove(); return false;">x</a>
+            <%= hidden_field_tag "skills[]", s[:id] %>
+            <a href="#" onclick="$(this).parent().remove(); return false;">x</a>
           </span>
         <% end %>
       <% end %>
