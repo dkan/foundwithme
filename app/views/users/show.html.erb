@@ -6,7 +6,11 @@
 
         <div class="pull-left">
           <%= gravatar_image_tag(@user.email, :alt => @user.first_name, :gravatar => { :size => 200, :default => :mm }, :class => "user-avatar") %>
+        <% if @user == current_user %>
+          <a href="#" style="float:left;" onclick="showUserEdit();">Edit Profile</a>
+        <% end %>
         </div>
+
 
         <div class="pull-right">
           <a class="btn btn-info pull-right contact-user" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
@@ -40,7 +44,7 @@
 
     </div>
   </div>
-  <div class="row">
+  <div class="row" id="user_info"> 
     <div class="span10 offset1">
 
         <h4>Skills</h4>
@@ -70,7 +74,7 @@
 
             <span class="edu-name pull-right"><%= edu.start_date.year %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>
             <span class="edu-year-range"><%= edu.institution %></span>
-            <p>Education Description if any</p>
+            <p><%= edu.degree %></p>
 
           <% end %>
         <% end %>
@@ -84,10 +88,11 @@
           <% end %>
         <% end %>
 
-
-
     </div>
   </div>
+  <% if @user == current_user %>
+    <%= render 'users/edit' %>
+  <% end %>
 </div>
 
 <div id="contactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">

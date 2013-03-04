@@ -6,6 +6,7 @@ Foundwithme::Application.routes.draw do
 
   authenticated :user do
     post '/update_user_skills', to: 'users#update_user_skills', as: 'update_user_skills'
+    post '/update_user_interests', to: 'users#update_user_interests', as: 'update_user_interests'
     root :to => 'users#index'
     resources :users
   end

@@ -1,0 +1,66 @@
+<div class="row" id="profile-edit-row" style="display:none;">
+  <div class="span10 offset1">
+
+      <div class="skills_template" style="display:none">
+        <div class="skill"><%= text_field_tag "name[]" , '' %></div>
+      </div>
+      
+      <h4>Skills</h4>
+      
+      <%= form_tag update_user_skills_path, id: 'skills-form', remote: true do %>
+        <% skills_for(current_user).each do |s| %>
+          <%= hidden_field_tag "skills[]", s[:id] %>
+          <span class="badge badge-warning"><%= s[:name] %>
+            <a href="#" onclick="$(this).parent().parent().remove(); return false;">x</a>
+          </span>
+        <% end %>
+      <% end %>
+      <a href="#" onclick="$('#skills-form).append($('.skills_template').html()); return false;">(+) Add More</a>
+
+      <%= simple_nested_form_for @user, html: { id: 'user-edit-form'}, remote: true do |f| %>
+
+        <h4>Experience</h4>
+        <%= f.simple_fields_for :employments do |emp| %>
+           <%= emp.text_field :id, class: 'id', disabled: true, style: 'display:none' %>
+           <span class="edu-name pull-right"><%= emp.text_field :start_date %> - <%= emp.text_field :end_date %></span>
+           <span class="edu-year-range"><%= emp.text_field :company %></span>
+           <p><%= emp.text_field :title %></p>
+           <%= emp.link_to_remove "(-) Remove", confirm: "Are you sure you want to remove?" %><br/>
+        <% end %>
+        <%= f.link_to_add "(+) Add More Experience", :employments %>
+
+        <h2> Education </h2>
+        <div id="educations">
+          <%= f.simple_fields_for :educations do |edu| %>
+             <%= edu.text_field :id, class: 'id', disabled: true, style: 'display:none' %>
+             <span class="edu-name pull-right"><%= edu.text_field :start_date %> - <%= edu.text_field :end_date %></span>
+             <span class="edu-year-range"><%= edu.text_field :institution %></span>
+             <p><%= edu.text_field :degree %></p>
+             <%= edu.link_to_remove "(-) Remove", confirm: "Are you sure you want to remove?" %>
+          <% end %>
+          <%= f.link_to_add "(+) Add More Education", :educations %>      
+        <div>
+      <% end %><%# end nested form %>
+
+      <div class="interests_template" style="display:none">
+        <div class="interests"><%= text_field_tag "name[]" , '' %></div>
+      </div>
+      
+      <h4>Interests</h4>
+      
+      <%= form_tag update_user_interests_path, id: 'interests-form', remote: true do %>
+        <% interests_for(current_user).each do |s| %>
+          <%= hidden_field_tag "skills[]", s[:id] %>
+          <span class="badge badge-warning"><%= s[:name] %>
+            <a href="#" onclick="$(this).parent().parent().remove(); return false;">x</a>
+          </span>
+        <% end %>
+      <% end %>
+      <a href="#" onclick="$('#interests-form').append($('.interests_template').html()); return false;">(+) Add More</a>
+
+  </div>
+</div> <!-- end row -->
+  
+<%= submit_tag "Save", class: 'submit', id: 'skills_form_submit',
+   onclick: "$('#skills_form').submit(); $('#user-edit-form').submit(); $('#interests-form').submit(); return false; " %>
+<a href="#" onclick="showUserInfo();"> Cancel </a>

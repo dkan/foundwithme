@@ -58,3 +58,15 @@ function User (currentUser) {
 
   initialize(this, currentUser);
 }
+
+var showUserInfo = function(){
+  $('#user_info').show();
+  $('#profile-edit-row').hide();
+  return false;
+}
+
+var showUserEdit = function(){
+  $('#user_info').hide();
+  $('#profile-edit-row').show();
+  return false;
+}

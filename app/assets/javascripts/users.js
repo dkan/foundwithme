@@ -78,12 +78,18 @@ $(document).ready(function () {
   });
 
   $('div[id^=search-]').on('click', function (event) {
-
     if ($(event.target).is('span.checkbox')) {
       if ($(event.target).hasClass('checked')) {
         $(event.target).removeClass('checked');
       } else {
         $(event.target).addClass('checked');
+      }
+    }
+    if ($(event.target).is('span.checkbox i')) {
+      if ($(event.target).parent().hasClass('checked')) {
+        $(event.target).parent().removeClass('checked');
+      } else {
+        $(event.target).parent().addClass('checked');
       }
     }
   });
@@ -199,6 +205,8 @@ $(document).ready(function () {
     ajaxSearch();
     return false;
   });
+
+  $('#search-location').on('change', ajaxSearch);
 });
 
 var ajaxSearch = function (){

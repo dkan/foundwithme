@@ -43,6 +43,16 @@ class UsersController < ApplicationController
       end 
     end
   end
+  
+  def update_user_interests
+    respond_to do |format|
+      if UserInterest.update_user_interests(current_user.id, params[:interests], params[:name])
+        format.json { render json: 'User updated.', status: :ok }
+      else
+        format.json { render json: 'Unable to update user.', status: :error }
+      end 
+    end
+  end
 
   def edit
     @user = current_user
