@@ -25,9 +25,21 @@
 
 <%= yield %>
 
+<div class="container">
+	<div class="row">
+		<span class="span12">
+			<footer>
+				<p>&copy; 2013 Found With Me</p>
+			</footer>
+		</div>
+	</div>
+</div>
+
 <%= render 'layouts/user' %>
 <%= javascript_include_tag "application" %>
 <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+
+
 
 </body>
 </html>
