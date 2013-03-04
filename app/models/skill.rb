@@ -10,7 +10,7 @@ class Skill < ActiveRecord::Base
 
       skill_list = skill_list.values[1]
       skill_list.each do |s|
-        ids << self.find_or_create_by_name(s.skill.name.humanize).id
+        ids << self.find_or_create_by_name(s.skill.name.downcase).id
       end
     end
 
