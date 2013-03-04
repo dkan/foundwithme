@@ -12,12 +12,14 @@
     <%= text_field_tag 'location', current_user.location, placeholder: 'Enter search location...' %>
   </div>
   <h5 data-toggle="collapse" data-target="#search-skills">They're skilled in</h5>
+  <div id="skills-to-search"></div>
   <div id="search-skills" class="collapse in">
     <%= form_tag skills_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
       <%= text_field_tag :skill_name, nil, autocomplete: :off, placeholder: 'ex. CSS, Ruby, budgeting' %>
     <% end %>
   </div>
   <h5 data-toggle="collapse" data-target="#search-interests">And interested in:</h5>
+  <div id="interests-to-search"></div>
   <div id="search-interests" class="collapse in">
     <%= form_tag interests_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
       <%= text_field_tag :interest_name, nil, autocomplete: :off, placeholder: 'ex. hiking, animals, astronomy ' %>

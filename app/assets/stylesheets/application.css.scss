@@ -198,6 +198,11 @@ a {
 			display: none;
 		}
 
+    &.skill-tag, &.interest-tag {
+      background: $orange;
+      opacity: 1;
+  	}
+
 		&.checked {
 			background: $orange;
 			opacity: 1;
