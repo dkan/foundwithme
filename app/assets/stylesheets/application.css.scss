@@ -8,17 +8,22 @@
 
 @import "bootstrap";
 
-@import url('http://fonts.googleapis.com/css?family=Ubuntu:400,500,700');
-
 $gray: #555555;
+$blue: #3495b7;
+$borderBrown: rgba(108,81,51,.36);
 
 body {
+	background: url('bg-site.png');
 	color: $gray;
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'myriad-pro', sans-serif;
 	font-size: 14px;
 }
 
-/**  Non-Logged In View  **/
+a {
+	color: $blue;
+}
+
+/**  Non-Logged In Splash View  **/
 .sessions-new {
 	background-image: url('bg-home.jpg');
 	background-position: top center;
@@ -48,7 +53,7 @@ body {
 	#sign-up-intro {
 		color: #ffffff;
 		font-size: 22px;
-		font-weight: 500;
+		font-weight: 600;
 		line-height: 26px;
 		margin: 20px 0;
 		text-shadow: 0 0 15px rgba(0,0,0,.75);
@@ -106,4 +111,81 @@ body {
 		width: 100%;
 	}
 
+}
+
+
+/**  Nav Bar  **/
+
+.navbar-inner {
+	background: #ffffff;
+	border-bottom: 1px solid #d6d3c6;
+	box-shadow: none !important;
+
+	.brand {
+		color: $gray;
+		font-size: 30px;
+		font-weight: 700;
+
+		span {
+			font-weight: normal;
+		}
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	.nav {
+		margin-left: 50px;
+
+		li {
+
+			a {
+				color: $gray;
+				font-size: 21px;
+				padding: 10px 30px 10px;
+				text-transform: uppercase;
+			}
+
+			&.active a, &.active a:hover, a:hover {
+				background: #ffffff;
+				box-shadow: none;
+				color: $blue;
+			}
+		}
+	}
+}
+
+/**  Search Page  **/
+
+#search-container {
+	margin-top:70px;
+
+	.badge {
+		cursor: pointer;
+		font-family: Arial, sans-serif;
+		min-height: auto !important;
+
+		i.icon-ban-circle {
+			display: none;
+		}
+
+		&.checked {
+			background: $gray;
+			opacity: .3;
+
+			.icon-ok {
+				display: none !important;
+			}
+
+			.icon-ban-circle {
+				display: inline-block;
+			}
+
+		}
+	}
+	#search-bar {
+		background: #ffffff;
+		border: 1px solid $borderBrown;
+		padding: 10px 25px;
+	}
 }
