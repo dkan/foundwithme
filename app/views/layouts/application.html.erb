@@ -6,6 +6,7 @@
   <%= csrf_meta_tags %>
 	<script type="text/javascript" src="//use.typekit.net/hul3mof.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body class="<%= body_class %>">
 
@@ -24,9 +25,21 @@
 
 <%= yield %>
 
+<div class="container">
+	<div class="row">
+		<span class="span12">
+			<footer>
+				<p>&copy; 2013 Found With Me</p>
+			</footer>
+		</div>
+	</div>
+</div>
+
 <%= render 'layouts/user' %>
 <%= javascript_include_tag "application" %>
 <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+
+
 
 </body>
 </html>

@@ -1,4 +1,5 @@
-//= require jquery-1.9.1.js
+//= require jquery-1.9.1
+//= require jquery-scrollto
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require bootstrap
@@ -40,18 +41,8 @@ var token = function(res){
 };
 
 $(window).on('load', function () {
-  /*
-  $.ajax({
-    async: true,
-    type: 'get',
-    url: 'user/SOME ID',
-    dataType: 'json',
-    data: null,
-    success: function (data, textStatus, xhr) {
-      // Do something.
-    }
-  });
-  */
+  $('.carousel').carousel();
+  
   $('#customStripeButton').click(function(){
 
     StripeCheckout.open({
@@ -68,5 +59,20 @@ $(window).on('load', function () {
 });
 
 $(document).on('ready', function () {
+  $('.person').on('click', function (event) {
+    $('#me-display').hide();
+    $('#search-wrapper').scrollTo($('#search-results-display'), 800);
+    return false;
+  });
 
+  $('#me').on('click', function (event) {
+    $('#search-wrapper').scrollTo($('#me-display'), 800);
+    return false;
+  });
+
+  $('.go-back').on('click', function (event) {
+    $('#search-wrapper').scrollTo($('#search-results'), 800);
+    $('#me-display').show();
+    return false;
+  });
 });

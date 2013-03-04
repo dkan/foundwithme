@@ -1,0 +1,110 @@
+<div class="container" id="profile-container">
+  <div class="go-back">
+    <h2 style="cursor: pointer;">&lt;-</h2>
+  </div>
+  <div class="row">
+    <div class="span10 offset1">
+
+      <div class="clearfix">
+
+        <div class="pull-left">
+          <%= gravatar_image_tag(locals[:user].email, :alt => locals[:user].first_name, :gravatar => { :size => 200, :default => :mm }, :class => "user-avatar") %>
+        </div>
+
+        <div class="pull-right">
+          <a class="btn btn-info pull-right contact-user" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
+          <% if locals[:user].status %>
+            <span class="user-status"><i class="status green"></i> <%= locals[:user].status %></span>
+          <% end %>
+
+        </div>
+
+        <div class="pull-left">
+
+          <p>
+            <span class="user-name"><%= locals[:user].first_name %> <%= locals[:user].last_name %></span><br>
+            <span class="user-location"><%= locals[:user].location %></span><br>
+            <% if locals[:user].role && locals[:user].looking_for %>
+              <span class="user-role"><%= locals[:user].role %></span> looking for <span class="user-role-want"><%= locals[:user].looking_for %></span>
+            <% elsif locals[:user].role %>
+              <span class="user-role"><%= locals[:user].role %></span>
+            <% elsif locals[:user].looking_for%>
+              Looking for <span class="user-role-want"><%= locals[:user].looking_for %></span><br>
+            <% end %>
+          </p>
+
+        </div>
+
+        <div class="pull-left user-bio">
+          <p><%= locals[:user].bio %></p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="span10 offset1">
+
+        <h4>Skills</h4>
+
+        <% if locals[:user].user_skills %>
+          <% locals[:user].user_skills.each do |s| %>
+              <span class="badge badge-warning"><%= s.skill.name %></span>
+          <% end %>
+        <% end %>
+
+        <h4>Experience</h4>
+
+        <% if locals[:user].employments %>
+          <% locals[:user].employments.each do |emp| %>
+
+            <span class="edu-name pull-right"><%= emp.start_date.year %> - <%= emp.end_date ? emp.end_date.year : "Present" %></span>
+            <span class="edu-year-range"><%= emp.company %></span>
+            <p><%= emp.title %></p>
+
+          <% end %>
+        <% end %>
+
+        <h4> Education </h4>
+
+        <% if locals[:user].educations %>
+          <% locals[:user].educations.each do |edu| %>
+
+            <span class="edu-name pull-right"><%= edu.start_date.year %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>
+            <span class="edu-year-range"><%= edu.institution %></span>
+            <p>Education Description if any</p>
+
+          <% end %>
+        <% end %>
+
+
+        <h4>Interests</h4>
+
+        <% if locals[:user].user_interests %>
+          <% locals[:user].user_interests.each do |i| %>
+              <span class="badge badge-warning"><%= i.interest.name %></span>
+          <% end %>
+        <% end %>
+
+
+
+    </div>
+  </div>
+</div>
+
+<div id="contactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="contactModalLabel"></h3>
+  </div>
+  <div class="modal-body">
+    <%= text_area_tag 'body', '', class: 'email-body' %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="email-button" class="btn btn-primary">Send email</button>
+  </div>
+</div>
+
+

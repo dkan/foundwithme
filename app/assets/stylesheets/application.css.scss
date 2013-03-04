@@ -8,6 +8,14 @@
 
 @import "bootstrap";
 
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/responsive-utilities";
+@import "bootstrap/responsive-768px-979px";
+@import "bootstrap/responsive-767px-max";
+@import "bootstrap/responsive-navbar";
+
+
 $gray: #555555;
 $lightGray: #dddddd;
 $blue: #3495b7;
@@ -111,16 +119,7 @@ a {
 	}
 	#feature-carousel {
 		width: 490px;
-	}
-
-	footer {
-		background-position: bottom;
-		background-repeat: repeat-x;
-		bottom: 0;
-		display: none;
-		position: absolute;
-		text-align: center;
-		width: 100%;
+		max-width: 100%;
 	}
 
 }
@@ -217,6 +216,24 @@ a {
 
 		}
 	}
+
+  #search-wrapper {
+    width: 620px;
+    height: 100%;
+    overflow: hidden;
+
+    #search-mask {
+      width: 1860px;
+      height: 100%;
+
+      .search-results-item {
+        width: 620px;
+        height: 100%;
+        float: left;
+      }
+    }
+  }
+
 	#search-bar {
 		background: #ffffff;
 		border: 1px solid $borderBrown;
@@ -321,5 +338,75 @@ a {
 			}
 
 		}
+	}
+}
+
+#sign-in-modal {
+	width: 300px;
+
+	form {
+		margin: 0;
+	}
+}
+
+.carousel-caption h4 {
+	font-weight: 600;
+}
+
+footer {
+	bottom: 0;
+	color: #000000;
+	margin-bottom: 10px;
+	margin-top: 30px;
+	text-align: center;
+}
+
+/**   Responsive Styles   **/
+
+@media (max-width: 767px) {
+  body {
+
+  }
+  .sessions-new {
+	  #header-home h1 {
+	  	font-size: 35px;
+	  	text-align: center;
+	  }
+	  #form-sign-up {
+	  	background: none;
+	  	padding: 0;
+
+	  	input {
+	  		width: 90%;
+	  	}
+
+			#user_first_name, #user_last_name {
+				margin-left: 0;
+				width: 90% !important;
+			}
+
+			input[type="text"] {
+				max-width: 90% !important;
+			}
+			#btn-sign-up {
+				width: 267px;
+			}
+			 #btn-sign-up-linkedin {
+			 	width: 240px;
+			 }
+	  }
+		#sign-up-intro {
+			text-align: center;
+			font-size: 18px;
+			line-height: 18px;
+		}
+	}
+	#search-container {
+
+		#search-bar {
+			position: relative;
+		}
+
+		
 	}
 }

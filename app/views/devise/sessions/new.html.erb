@@ -18,9 +18,11 @@
 	<div class="row">
 		<div class="span8">
 
-			<div id="feature-carousel" class="carousel slide">
+			<div id="feature-carousel" class="carousel slide hidden-phone">
 			  <ol class="carousel-indicators">
 			    <li data-target="#feature-carousel" data-slide-to="0" class="active"></li>
+			    <li data-target="#feature-carousel" data-slide-to="1"></li>
+			    <li data-target="#feature-carousel" data-slide-to="2"></li>
 			  </ol>
 			  <!-- Carousel items -->
 			  <div class="carousel-inner">
@@ -28,6 +30,18 @@
 			    	<%= image_tag("intro-slide-1.png") %>
 						<div class="carousel-caption">
 							<h4>Find someone who needs help with their startup or get help starting your own.</h4>
+						</div>
+			    </div>
+			    <div class="item">
+			    	<%= image_tag("intro-slide-2.png") %>
+						<div class="carousel-caption">
+							<h4>FoundWithMe member profiles contain skills, interests, past work experience and education to help find your match.</h4>
+						</div>
+			    </div>
+			    <div class="item">
+			    	<%= image_tag("intro-slide-3.png") %>
+						<div class="carousel-caption">
+							<h4>Search with high granularity. Find a co-counder by role, skill, interest, current status and location.</h4>
 						</div>
 			    </div>
 			  </div>
@@ -46,27 +60,34 @@
 </div>
 
 
-
 <div id="sign-in-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div id="form-sign-in">
-		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-			<div><%= f.label :email %><br />
-			<%= f.email_field :email, :autofocus => true %></div>
+	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Sign in</h3>
+  </div>
+  <div class="modal-body">
+		<div><%= f.email_field :email, :autofocus => true, :placeholder => "Email address" %></div>
 
-			<div><%= f.label :password %><br />
-			<%= f.password_field :password %></div>
+		<div><%= f.password_field :password, :placeholder => "Password" %></div>
 
-			<% if devise_mapping.rememberable? -%>
-			<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-			<% end -%>
-
-			<div><%= f.submit "Sign in" %></div>
+		<% if devise_mapping.rememberable? -%>
+		<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
 		<% end %>
 
-		<%= render "devise/shared/links" %>
-	</div>
+		<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+			<%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+		<% end -%>
+  </div>
+  <div class="modal-footer">
+    <div>
+    	<%- if devise_mapping.omniauthable? %>
+			  <%- resource_class.omniauth_providers.each do |provider| %>
+			    <%= link_to "Sign in with LinkedIn", omniauth_authorize_path(resource_name, provider), :class => "btn btn-info", :id => "btn-sign-in-linkedin" %>
+			  <% end -%>
+			<% end -%>
+    	<%= f.submit "Sign in", :class => "btn btn-warning" %>
+    </div>
+  </div>
+	<% end %>
 </div>
-
-<footer>
-	&copy; 2013 FOUNDWITHME
-</footer>
