@@ -26,16 +26,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def profile
+  def update_user_skills
+    
+    respond_to do |format|
+      if UserSkill.update_user_skills(current_user.id, params[:skills], params[:name])
+        format.json { render json: 'User updated.', status: :ok }
+      else
+        format.json { render json: 'Unable to update user.', status: :error }
+      end 
+    end
+  end
+
+  def edit
     @user = current_user
   end
 
   def show
-    if params[:id]
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
+    @user = User.find(params[:id])
   end
 
   def sql_query

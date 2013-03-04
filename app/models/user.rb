@@ -16,8 +16,6 @@ class User < ActiveRecord::Base
   has_many :educations
   has_many :employments
   
-  #accepts_nested_attributes_for :user_skills
-  #accepts_nested_attributes_for :user_interests
   accepts_nested_attributes_for :educations, :allow_destroy => true
   accepts_nested_attributes_for :employments, :allow_destroy => true
 

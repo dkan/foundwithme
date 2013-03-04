@@ -5,6 +5,7 @@ Foundwithme::Application.routes.draw do
   match '/auth/failure', :to => 'authentications#failure'
 
   authenticated :user do
+    post '/update_user_skills', to: 'users#update_user_skills', as: 'update_user_skills'
     root :to => 'users#index'
     resources :users
   end
