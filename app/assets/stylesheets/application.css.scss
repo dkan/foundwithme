@@ -380,6 +380,20 @@ footer {
 	text-align: center;
 }
 
+.go-back {
+	float: left;
+	margin-left: -70px;
+	background:url('icon-back.png');
+	width: 48px;
+	height: 48px;
+	cursor: pointer;
+	opacity:.7;
+
+	&:hover {
+		opacity:1;
+	}
+}
+
 /**   Responsive Styles   **/
 
 @media (max-width: 767px) {
