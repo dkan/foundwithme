@@ -78,12 +78,18 @@ $(document).ready(function () {
   });
 
   $('div[id^=search-]').on('click', function (event) {
-
     if ($(event.target).is('span.checkbox')) {
       if ($(event.target).hasClass('checked')) {
         $(event.target).removeClass('checked');
       } else {
         $(event.target).addClass('checked');
+      }
+    }
+    if ($(event.target).is('span.checkbox i')) {
+      if ($(event.target).parent().hasClass('checked')) {
+        $(event.target).parent().removeClass('checked');
+      } else {
+        $(event.target).parent().addClass('checked');
       }
     }
   });
@@ -99,7 +105,8 @@ $(document).ready(function () {
           key:         stripePublicKey,
           address:     false,
           amount:      500,
-          name:        'Monthly Subscription',
+          name:        'You need to pay for that!',
+          description: "We value our user's privacy so we make sure everyone's emails are kept safe. Simply subscribe for $5 per month and we'll send messages to your potential co-founders on your behalf!",
           panelLabel:  'Subscribe',
           token:       token
         });
@@ -198,6 +205,8 @@ $(document).ready(function () {
     ajaxSearch();
     return false;
   });
+
+  $('#search-location').on('change', ajaxSearch);
 });
 
 var ajaxSearch = function (){
@@ -225,12 +234,28 @@ var ajaxSearch = function (){
               '<p>' +
                 '<span class="user-full-name">' + data[i].first_name + ' ' + data[i].last_name + '</span><br>' +
                 '<span class="user-location">' + data[i].location + '</span><br>' +
-                '<span class="user-role">' + data[i].role + '</span> looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>' +
-                '<span class="user-current-status"><i class="status green"></i>' + data[i].status + '</span>' +
               '</p>' +
             '</div>' +
           '</div>'
         )
+        if (data[i].role && data[i].looking_for) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            '<span class="user-role">' + data[i].role + '</span> looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
+          )
+        } else if (data[i].role) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            '<span class="user-role">' + data[i].role + '</span>'
+          )
+        } else if (data[i].looking_for) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            'Looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
+          )
+        }
+        if (data[i].status) {
+          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+            '<span class="user-current-status"><i class="status green"></i>' + data[i].status + '</span>'
+          )
+        }
       }
     },
     dataType: 'json'
