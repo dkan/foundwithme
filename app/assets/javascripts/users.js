@@ -210,7 +210,6 @@ var ajaxSearch = function (){
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
     },
     success: function (data, stat, xhr) {
-console.log(data);
       $('#search-results').html('')
       for (var i in data) {
         $('#search-results').append(
