@@ -13,7 +13,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.json { render json: 'User updated.', status: :ok }
+      else
+        format.json { render json: 'Unable to update user.', status: :error }
+      end 
+    end
   end
 
   def profile
