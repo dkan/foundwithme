@@ -137,7 +137,7 @@ a {
 		}
 	}
 	.nav {
-		margin-left: 50px;
+		margin-left: 70px;
 
 		li {
 
@@ -182,7 +182,7 @@ a {
 		cursor: pointer;
 		font-family: Arial, sans-serif;
 		min-height: auto !important;
-		opacity: .5;
+		opacity: .65;
 
 		i.icon-ok {
 			display: none;
@@ -205,7 +205,7 @@ a {
 	#search-bar {
 		background: #ffffff;
 		border: 1px solid $borderBrown;
-		padding: 10px 25px;
+		padding: 10px 25px 25px 25px;
 		position: fixed;
 		width: 250px;
 		-webkit-touch-callout: none;
@@ -243,7 +243,8 @@ a {
 		border: 1px solid $borderBrown;
 		cursor: pointer;
 		font-size: 12px;
-		padding: 20px;
+		margin-bottom: 15px;
+		padding: 15px;
 		-o-transition: .5s;
 		-ms-transition: .5s;
 		-moz-transition: .5s;
@@ -256,6 +257,11 @@ a {
 			box-shadow: 0 0 10px $blue;
 		}
 
+		p {
+			line-height: 16px;
+			margin-bottom: 0;
+		}
+
 		.user-full-name, .user-role, .user-role-want {
 			font-weight: 700;
 		}
@@ -264,14 +270,22 @@ a {
 			color: #888888;
 		}
 
+		.user-full-name {
+			font-size: 16px;
+		}
+
 		.user-avatar {
 			margin-right: 20px;
 		}
 
 		.btn {
-			margin-bottom: 8px;
+			margin-bottom: 6px;
 			text-align: left;
 			width: 70px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 	}
 }
