@@ -81,12 +81,12 @@
   </div>
   <div class="modal-footer">
     <div>
+    	<%= f.submit "Sign in", :class => "btn btn-warning" %> &nbsp;or 
     	<%- if devise_mapping.omniauthable? %>
 			  <%- resource_class.omniauth_providers.each do |provider| %>
-			    <%= link_to "Sign in with LinkedIn", omniauth_authorize_path(resource_name, provider), :class => "btn btn-info", :id => "btn-sign-in-linkedin" %>
+				  <a href="<%= url_for omniauth_authorize_path(resource_name, provider) %>" id="btn-sign-in-linkedin" class="btn btn-info">Sign in with <%= image_tag('logo-linkedin.png') %></a>
 			  <% end -%>
 			<% end -%>
-    	<%= f.submit "Sign in", :class => "btn btn-warning" %>
     </div>
   </div>
 	<% end %>

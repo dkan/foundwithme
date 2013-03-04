@@ -12,6 +12,6 @@
 <p>or</p>
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign up with LinkedIn", omniauth_authorize_path(resource_name, provider), :class => "btn btn-info", :id => "btn-sign-up-linkedin" %>
+  <a href="<%= url_for omniauth_authorize_path(resource_name, provider) %>" id="btn-sign-up-linkedin" class="btn btn-info">Sign up with <%= image_tag('logo-linkedin.png') %></a>
   <% end -%>
 <% end -%>

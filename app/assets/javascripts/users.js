@@ -137,8 +137,8 @@ $(document).ready(function () {
     if ($(event.target).is('.contact-user, .contact-user i')) {
       if (App.User.paid === true) {
         $('#email-button').data('id', $(event.target).data('id'));
-        $('#contactModalLabel').html('Email ' + $(event.target).data('name'));
-        $('#contactModal').modal();
+        $('#contactModalLabel, #info-contactModalLabel').html('Email ' + $(event.target).data('name'));
+        $('#contactModal, #info-contactModal').modal();
       } else {
         StripeCheckout.open({
           key:         stripePublicKey,
@@ -166,7 +166,7 @@ $(document).ready(function () {
         message: {
           sender_id: App.User.id,
           recipient_id: $('#email-button').data('id'),
-          body: $('.email-body').val()
+          body: $('#email-button .email-body').val()
         }
       },
       beforeSend: function (xhr) {
@@ -190,6 +190,43 @@ $(document).ready(function () {
           )
         }
         $('#contactModal').modal('toggle')
+      },
+      dataType: 'json'
+    });
+  });
+  
+  $('#info-email-button').on('click', function (event) {
+    $.ajax({
+      type: 'post',
+      url: '/messages',
+      data: {
+        message: {
+          sender_id: App.User.id,
+          recipient_id: $('#info-email-button').data('id'),
+          body: $('#info-email-button .email-body').val()
+        }
+      },
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      },
+      success: function (data, stat, xhr) {
+        if (data['success']) {
+          $('#info-email-button .email-body').val('');
+          $('#flash').html(
+            '<div class="alert alert-success">' +
+                data["success"] +
+                '<a class="close" data-dismiss="alert">&#215;</a>' +
+            '</div>'
+          )
+        } else {
+          $('#flash').html(
+            '<div class="alert alert-error">' +
+                data["error"] +
+                '<a class="close" data-dismiss="alert">&#215;</a>' +
+            '</div>'
+          )
+        }
+        $('#info-contactModal').modal('toggle')
       },
       dataType: 'json'
     });

@@ -11,11 +11,11 @@ $borderBrown: rgba(108,81,51,.36);
 
 .users-show {
 	#nav-caret {
-		left: -298px;
+		left: -175px;
 	}
 }
 
-#profile-container {
+#profile-container, #info-container {
 	margin-top: 90px;
 
 	.user-avatar {
@@ -48,7 +48,7 @@ $borderBrown: rgba(108,81,51,.36);
 
 	}
 
-	#btn-send-msg {
+	#btn-send-msg, #btn-info-send-msg {
 		margin-top: 10px;
 	}
 

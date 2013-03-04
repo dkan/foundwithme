@@ -9,11 +9,11 @@
               <a href="#" id="search">Search</a>
             </li>
             <li>
-              <a href="#" id="me">Me</a>
+              <%= link_to "Me", current_user, :id => "me" %>
             </li>
-            <li>
+            <!--<li>
               <a href="#">About</a>
-            </li>
+            </li>-->
           </ul>
           <%= image_tag("icon-nav-caret.png", :id => "nav-caret") %>
         </div>

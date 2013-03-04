@@ -1,4 +1,4 @@
-<div class="container" id="profile-container">
+<div class="container" id="info-container">
   <div class="go-back">
     <h2 style="cursor: pointer;">&lt;-</h2>
   </div>
@@ -12,7 +12,7 @@
         </div>
 
         <div class="pull-right">
-          <a class="btn btn-info pull-right contact-user" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
+          <a class="btn btn-info pull-right contact-user" id="btn-info-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
           <% if locals[:user].status %>
             <span class="user-status"><i class="status green"></i> <%= locals[:user].status %></span>
           <% end %>
@@ -93,17 +93,17 @@
   </div>
 </div>
 
-<div id="contactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+<div id="info-contactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="contactModalLabel"></h3>
+    <h3 id="info-contactModalLabel"></h3>
   </div>
   <div class="modal-body">
     <%= text_area_tag 'body', '', class: 'email-body' %>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button id="email-button" class="btn btn-primary">Send email</button>
+    <button id="info-email-button" class="btn btn-primary">Send email</button>
   </div>
 </div>
 
