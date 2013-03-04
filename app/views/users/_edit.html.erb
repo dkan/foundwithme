@@ -23,7 +23,7 @@
         <h4>Experience</h4>
         <%= f.simple_fields_for :employments do |emp| %>
            <%= emp.text_field :id, class: 'id', disabled: true, style: 'display:none' %>
-           <span class="edu-name pull-right"><%= emp.text_field :start_date %> - <%= emp.text_field :end_date %></span>
+           <span class="edu-name pull-right"><%= emp.text_field :start_date, style: 'width: 100px;' %> - <%= emp.text_field :end_date,  style: 'width: 100px;' %></span>
            <span class="edu-year-range"><%= emp.text_field :company %></span>
            <p><%= emp.text_field :title %></p>
            <%= emp.link_to_remove "(-) Remove", confirm: "Are you sure you want to remove?" %><br/>
@@ -34,7 +34,7 @@
         <div id="educations">
           <%= f.simple_fields_for :educations do |edu| %>
              <%= edu.text_field :id, class: 'id', disabled: true, style: 'display:none' %>
-             <span class="edu-name pull-right"><%= edu.text_field :start_date %> - <%= edu.text_field :end_date %></span>
+             <span class="edu-name pull-right"><%= edu.text_field :start_date,  style: 'width: 100px;' %> - <%= edu.text_field :end_date,  style: 'width: 100px;' %></span>
              <span class="edu-year-range"><%= edu.text_field :institution %></span>
              <p><%= edu.text_field :degree %></p>
              <%= edu.link_to_remove "(-) Remove", confirm: "Are you sure you want to remove?" %>
