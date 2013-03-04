@@ -70,11 +70,3 @@ $(window).on('load', function () {
 $(document).on('ready', function () {
 
 });
-
-$(document).ajaxComplete(function() {
-  alert('Updated successfully.');
-});
-
-$(document).ajaxError(function() {
-  alert('There was an error saving your information.');
-});
