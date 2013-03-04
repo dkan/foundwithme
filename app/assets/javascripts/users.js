@@ -12,14 +12,22 @@ $(window).load(function () {
 });
 
 $(document).ready(function () {
-  $('#skill_name').typeahead({
+  $('#skill_name, #interest_name').typeahead({
     source: function (query, process) {
+      var type = $(this)[0].$element.attr('id').split('_')[0] + 's';
+
+      if (type === 'skills') {
+        var data = { skill_name: query };
+      } else if (type === 'interests') {
+        var data = { interest_name: query };
+      }
+
       return $.ajax({
         async: true,
         type: 'get',
-        url: '/skills/search',
+        url: '/' + type + '/search',
         dataType: 'json',
-        data: { skill_name: query },
+        data: data,
         success: function (data, textStatus, xhr) {
           return process(data);
         }

@@ -22,7 +22,12 @@ Foundwithme::Application.routes.draw do
     get :search
   end
 
-  resources :skills, except: [:update, :delete]
+  namespace :interests do
+    get :search
+  end
+
+  resources :skills, except: [:edit, :update, :delete]
+  resources :interests, except: [:edit, :update, :delete]
   resources :messages, only: [:create]
   resources :charges, only: [:create]
 end

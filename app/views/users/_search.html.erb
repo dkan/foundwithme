@@ -16,12 +16,14 @@
         <h5>They are skilled in:</h5>
         <div id="search-skills">
           <%= form_tag skills_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
-            <%= text_field_tag :skill_name, nil, autocomplete: :off, placeholder: 'Enter skills...' %>
+            <%= text_field_tag :skill_name, nil, autocomplete: :off, placeholder: 'What skills are you looking for?' %>
           <% end %>
         </div>
         <h5>And interested in:</h5>
         <div id="search-interests">
-          <%= text_field_tag 'interests', '', placeholder: 'Enter interests...' %>
+          <%= form_tag interests_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
+            <%= text_field_tag :interest_name, nil, autocomplete: :off, placeholder: 'What are you interested in?' %>
+          <% end %>
         </div>
         <h5>They are:</h5>
         <div id="search-status">
