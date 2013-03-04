@@ -85,7 +85,7 @@
         <% if locals[:user].employments %>
           <% locals[:user].employments.each do |emp| %>
 
-            <span class="edu-name pull-right"><%= emp.start_date.year %> - <%= emp.end_date ? emp.end_date.year : "Present" %></span>
+            <span class="edu-name pull-right"><%= emp.start_date ? emp.start_date.year : '' %> - <%= emp.end_date ? emp.end_date.year : "Present" %></span>
             <span class="edu-year-range"><%= emp.company %></span>
             <p><%= emp.title %></p>
 
@@ -97,7 +97,7 @@
         <% if locals[:user].educations %>
           <% locals[:user].educations.each do |edu| %>
 
-            <span class="edu-name pull-right"><%= edu.start_date.year %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>
+            <span class="edu-name pull-right"><%= edu.start_date ? edu.start_date.year : '' %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>
             <span class="edu-year-range"><%= edu.institution %></span>
             <p><%= edu.degree %></p>
 
