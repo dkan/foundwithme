@@ -56,6 +56,12 @@ $(window).on('load', function () {
 
     return false;
   });
+
+  $('ul.nav a').on('click', function () {
+  	$('#nav-caret').removeClass().addClass($(this).attr('id'));
+  	$('ul.nav li').removeClass('active');
+  	$(this).parent().addClass('active');
+  });
 });
 
 $(document).on('ready', function () {
