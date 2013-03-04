@@ -6,7 +6,7 @@ class Skill < ActiveRecord::Base
     ids = []
     skill_list = omniauth.extra.raw_info.skills
     
-    if skill_list._total > 0
+    if skill_list && skill_list._total && skill_list._total > 0
 
       skill_list = skill_list.values[1]
       skill_list.each do |s|
