@@ -18,7 +18,7 @@
           <%= image_tag("icon-nav-caret.png", :id => "nav-caret") %>
         </div>
       <% if current_user %>
-        <div class="span1"><%= link_to "Logout", destroy_user_session_path, method: :delete %></div>
+        <div class="span1"><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "logout" %></div>
       <% end %>
       </div>
     </div>

@@ -15,6 +15,7 @@ $borderBrown: rgba(108,81,51,.36);
 
 body {
 	background: url('bg-site.png');
+	background-attachment: fixed;
 	color: $gray;
 	font-family: 'myriad-pro', sans-serif;
 	font-size: 14px;
@@ -154,6 +155,11 @@ a {
 			}
 		}
 	}
+	.logout {
+		color: $gray;
+		display: inline-block;
+		margin-top: 9px;
+	}
 }
 #nav-caret {
 	position: relative;
@@ -213,7 +219,7 @@ a {
 			position: static;
 		}
 		h5 {
-			background: url(icon-collapse.png);
+			background: url('icon-collapse.png');
 			background-repeat: no-repeat;
 			background-position: 0 7px;
 			cursor: pointer;
@@ -230,6 +236,42 @@ a {
 
 		input {
 			margin-bottom: 0;
+		}
+	}
+	.person {
+		background: #ffffff;
+		border: 1px solid $borderBrown;
+		cursor: pointer;
+		font-size: 12px;
+		padding: 20px;
+		-o-transition: .5s;
+		-ms-transition: .5s;
+		-moz-transition: .5s;
+		-webkit-transition: .5s;
+		transition: .5s;
+		transition-duration: .5s;
+
+		&:hover {
+			border: 1px solid $blue;
+			box-shadow: 0 0 10px $blue;
+		}
+
+		.user-full-name, .user-role, .user-role-want {
+			font-weight: 700;
+		}
+
+		.user-location {
+			color: #888888;
+		}
+
+		.user-avatar {
+			margin-right: 20px;
+		}
+
+		.btn {
+			margin-bottom: 8px;
+			text-align: left;
+			width: 70px;
 		}
 	}
 }
