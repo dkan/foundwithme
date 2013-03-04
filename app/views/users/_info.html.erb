@@ -4,9 +4,7 @@
   </div>
   <div class="row">
     <div class="span10 offset1">
-
       <div class="clearfix">
-
         <div class="pull-left">
           <%= gravatar_image_tag(locals[:user].email, :alt => locals[:user].first_name, :gravatar => { :size => 200, :default => :mm }, :class => "user-avatar") %>
         </div>
@@ -16,11 +14,9 @@
           <% if locals[:user].status %>
             <span class="user-status"><i class="status green"></i> <%= locals[:user].status %></span>
           <% end %>
-
         </div>
 
         <div class="pull-left">
-
           <p>
             <span class="user-name"><%= locals[:user].first_name %> <%= locals[:user].last_name %></span><br>
             <span class="user-location"><%= locals[:user].location %></span><br>
@@ -32,15 +28,12 @@
               Looking for <span class="user-role-want"><%= locals[:user].looking_for %></span><br>
             <% end %>
           </p>
-
         </div>
 
         <div class="pull-left user-bio">
           <p><%= locals[:user].bio %></p>
         </div>
-
       </div>
-
     </div>
   </div>
   <div class="row">
@@ -78,7 +71,6 @@
           <% end %>
         <% end %>
 
-
         <h4>Interests</h4>
 
         <% if locals[:user].user_interests %>
@@ -86,9 +78,6 @@
               <span class="badge badge-warning"><%= i.interest.name %></span>
           <% end %>
         <% end %>
-
-
-
     </div>
   </div>
 </div>
@@ -106,5 +95,3 @@
     <button id="info-email-button" class="btn btn-primary">Send email</button>
   </div>
 </div>
-
-
