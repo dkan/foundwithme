@@ -17,7 +17,7 @@
       <% end %>
       <a href="#" onclick="$('#skills-form).append($('.skills_template').html()); return false;">(+) Add More</a>
 
-      <%= simple_nested_form_for @user, html: { id: 'user-edit-form'}, remote: true do |f| %>
+      <%= simple_nested_form_for locals[:user], html: { id: 'user-edit-form'}, remote: true do |f| %>
 
         <h4>Experience</h4>
         <%= f.simple_fields_for :employments do |emp| %>
