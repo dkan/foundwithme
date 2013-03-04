@@ -31,6 +31,7 @@ class SkillsController < ApplicationController
 
   def search
     @skills = Skill.where(['name like ?', "#{params[:skill_name].downcase}%"])
+
     respond_to do |format|
       format.json { render json: @skills, status: :ok }
     end

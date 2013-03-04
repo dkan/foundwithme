@@ -2,52 +2,57 @@
   <div class="row">
     <div class="span4">
       <div id="search-bar">
-        <h5>You are looking for a:</h5>
-        <div id="search-role">
-          <span name="Developer" class="badge badge-warning checkbox">Developer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
-          <span name="Designer" class="badge badge-warning checkbox">Designer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
-          <span name="Business Developer" class="badge badge-warning checkbox">Business Developer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
-          <span name="Advisor" class="badge badge-warning checkbox">Advisor <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+        <h5 data-toggle="collapse" data-target="#search-role">You're looking for a</h5>
+        <div id="search-role" class="collapse in">
+          <span name="Developer" class="badge badge-default checkbox">Developer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Designer" class="badge badge-default checkbox">Designer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Business Developer" class="badge badge-default checkbox">Business Developer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Advisor" class="badge badge-default checkbox">Advisor <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
         </div>
-        <h5>Located in:</h5>
-        <div id="search-location">
+        <h5 data-toggle="collapse" data-target="#search-location">Located in</h5>
+        <div id="search-location" class="collapse in">
           <%= text_field_tag 'location', current_user.location, placeholder: 'Enter search location...' %>
         </div>
-        <h5>They are skilled in:</h5>
-        <div id="search-skills">
+        <h5 data-toggle="collapse" data-target="#search-skills">They're skilled in</h5>
+        <div id="search-skills" class="collapse in">
           <%= form_tag skills_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
-            <%= text_field_tag :skill_name, nil, autocomplete: :off, placeholder: 'Enter skills...' %>
+            <%= text_field_tag :skill_name, nil, autocomplete: :off, placeholder: 'ex. CSS, Ruby, budgeting' %>
           <% end %>
         </div>
-        <h5>And interested in:</h5>
-        <div id="search-interests">
-          <%= text_field_tag 'interests', '', placeholder: 'Enter interests...' %>
+        <h5 data-toggle="collapse" data-target="#search-interests">And interested in:</h5>
+        <div id="search-interests" class="collapse in">
+          <%= form_tag interests_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
+            <%= text_field_tag :interest_name, nil, autocomplete: :off, placeholder: 'ex. hiking, animals, astronomy ' %>
+          <% end %>
         </div>
-        <h5>They are:</h5>
-        <div id="search-status">
-          <span name="Casually looking" class="checkbox">Casually looking</span><br />
-          <span name="On the prowl" class="checkbox">On the prowl</span><br />
-          <span name="Happily matched" class="checkbox">Happily matched</span><br />
-          <span name="On the rebound" class="checkbox">On the rebound</span><br />
-          <span name="Open relationship" class="checkbox">Open relationship</span><br />
+        <h5 data-toggle="collapse" data-target="#search-status">Their status is</h5>
+        <div id="search-status" class="collapse in">
+          <span name="Casually looking" class="badge badge-default checkbox">Casually looking <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="On the prowl" class="badge badge-default checkbox">On the prowl <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Happily matched" class="badge badge-default checkbox">Happily matched <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="On the rebound" class="badge badge-default checkbox">On the rebound <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Open relationship" class="badge badge-default checkbox">Open relationship <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
         </div>
-        <h5>And have gotten:</h5>
-        <div id="search-milestone">
-          <span name="Nowhere" class="checkbox">Nowhere</span><br />
-          <span name="Ideas flowing" class="checkbox">Ideas flowing</span><br />
-          <span name="Prototyped products" class="checkbox">Prototyped products</span><br />
-          <span name="People to use" class="checkbox">People to use</span><br />
+        <h5 data-toggle="collapse" data-target="#search-milestone">And have gotten</h5>
+        <div id="search-milestone" class="collapse in">
+          <span name="Nowhere" class="badge badge-default checkbox">Nowhere <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Ideas flowing" class="badge badge-default checkbox">Ideas flowing <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Prototyped products" class="badge badge-default checkbox">Prototyped products <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="People to use" class="badge badge-default checkbox">People to use <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
         </div>
-        <h5>They are looking for a:</h5>
-        <div id="search-looking-for">
-          <span name="Developer" class="checkbox">Developer</span><br />
-          <span name="Designer" class="checkbox">Designer</span><br />
-          <span name="Business Developer" class="checkbox">Business Developer</span><br />
-          <span name="Advisor" class="checkbox">Advisor</span><br />
+        <h5 data-toggle="collapse" data-target="#search-looking-for">They are looking for a</h5>
+        <div id="search-looking-for" class="collapse in">
+          <span name="Developer" class="badge badge-default checkbox">Developer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Designer" class="badge badge-default checkbox">Designer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Business Developer" class="badge badge-default checkbox">Business Developer <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
+          <span name="Advisor" class="badge badge-default checkbox">Advisor <i class="icon-ok icon-white"></i><i class="icon-ban-circle icon-white"></i></span>
         </div>
       </div>
     </div>
     <div class="span8">
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
   </div>
 </div>

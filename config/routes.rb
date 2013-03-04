@@ -1,10 +1,4 @@
 Foundwithme::Application.routes.draw do
-
-  get '/skills' => 'skills#index', :as => 'skills'
-  get '/skills/import' => 'skills#import', :as => 'import_skills'
-  resources :charges, only: [:create]
-  resources :messages, only: [:create]
-
   devise_for :users,
     controllers: { omniauth_callbacks: 'authentications', registrations: "registrations"}
 
@@ -28,7 +22,12 @@ Foundwithme::Application.routes.draw do
     get :search
   end
 
-  resources :skills, except: [:update, :delete]
+  namespace :interests do
+    get :search
+  end
 
+  resources :skills, except: [:edit, :update, :delete]
+  resources :interests, except: [:edit, :update, :delete]
+  resources :messages, only: [:create]
   resources :charges, only: [:create]
 end
