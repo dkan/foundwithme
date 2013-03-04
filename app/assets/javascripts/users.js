@@ -111,10 +111,12 @@ $(document).ready(function () {
           token:       token
         });
       }
+    } else if ($(event.target).is('.person, .show-user')) {
+      $('#me-display').hide();
+      $('#search-wrapper').scrollTo($('#search-results-display'), 800);
     }
-    if ($(event.target).is('.show-user, .show-user i')) {
-      console.log('show user');
-    }
+
+    return false;
   });
 
   $('#email-button').on('click', function (event) {

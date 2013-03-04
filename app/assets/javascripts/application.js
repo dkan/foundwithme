@@ -59,11 +59,6 @@ $(window).on('load', function () {
 });
 
 $(document).on('ready', function () {
-  $('.person').on('click', function (event) {
-    $('#me-display').hide();
-    $('#search-wrapper').scrollTo($('#search-results-display'), 800);
-    return false;
-  });
 
   $('#me').on('click', function (event) {
     $('#search-wrapper').scrollTo($('#me-display'), 800);
