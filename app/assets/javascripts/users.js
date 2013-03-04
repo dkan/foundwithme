@@ -258,41 +258,45 @@ var ajaxSearch = function (){
     },
     success: function (data, stat, xhr) {
       $('#search-results').html('')
-      for (var i in data) {
-        $('#search-results').append(
-          '<div class="person clearfix">' +
-            '<div class="pull-right">' +
-              '<a href="" class="btn btn-info pull-right"><i class="icon-user icon-white"></i> Profile</a><br>' +
-              '<a class="btn btn-info pull-right contact-user" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"><i class="icon-envelope icon-white"></i> Message</a>' +
-            '</div>' +
-            '<div class="pull-left">' +
-              '<img src="http://placehold.it/64x64" alt="Person\'s Name" class="user-avatar">' +
-            '</div>' +
-            '<div class="pull-left">' +
-              '<p>' +
-                '<span class="user-full-name">' + data[i].first_name + ' ' + data[i].last_name + '</span><br>' +
-                '<span class="user-location">' + data[i].location + '</span><br>' +
-              '</p>' +
-            '</div>' +
-          '</div>'
-        )
-        if (data[i].role && data[i].looking_for) {
-          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
-            '<span class="user-role">' + data[i].role + '</span> looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
+      if (data.length === 0) {
+        $('#search-results').append('<div style="height: 100px;"></div>');
+      } else {
+        for (var i in data) {
+          $('#search-results').append(
+            '<div class="person clearfix">' +
+              '<div class="pull-right">' +
+                '<a href="" class="btn btn-info pull-right"><i class="icon-user icon-white"></i> Profile</a><br>' +
+                '<a class="btn btn-info pull-right contact-user" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"><i class="icon-envelope icon-white"></i> Message</a>' +
+              '</div>' +
+              '<div class="pull-left">' +
+                '<img src="http://placehold.it/64x64" alt="Person\'s Name" class="user-avatar">' +
+              '</div>' +
+              '<div class="pull-left">' +
+                '<p>' +
+                  '<span class="user-full-name">' + data[i].first_name + ' ' + data[i].last_name + '</span><br>' +
+                  '<span class="user-location">' + data[i].location + '</span><br>' +
+                '</p>' +
+              '</div>' +
+            '</div>'
           )
-        } else if (data[i].role) {
-          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
-            '<span class="user-role">' + data[i].role + '</span>'
-          )
-        } else if (data[i].looking_for) {
-          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
-            'Looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
-          )
-        }
-        if (data[i].status) {
-          $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
-            '<span class="user-current-status"><i class="status green"></i>' + data[i].status + '</span>'
-          )
+          if (data[i].role && data[i].looking_for) {
+            $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+              '<span class="user-role">' + data[i].role + '</span> looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
+            )
+          } else if (data[i].role) {
+            $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+              '<span class="user-role">' + data[i].role + '</span>'
+            )
+          } else if (data[i].looking_for) {
+            $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+              'Looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>'
+            )
+          }
+          if (data[i].status) {
+            $($('#search-results .person')[$('#search-results .person').length - 1].lastChild.lastChild).append(
+              '<span class="user-current-status"><i class="status green"></i>' + data[i].status + '</span>'
+            )
+          }
         }
       }
     },
