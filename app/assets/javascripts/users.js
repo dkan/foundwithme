@@ -99,7 +99,8 @@ $(document).ready(function () {
           key:         stripePublicKey,
           address:     false,
           amount:      500,
-          name:        'Monthly Subscription',
+          name:        'You need to pay for that!',
+          description: "We value our user's privacy so we make sure everyone's emails are kept safe. Simply subscribe for $5 per month and we'll send messages to your potential co-founders on your behalf!",
           panelLabel:  'Subscribe',
           token:       token
         });
