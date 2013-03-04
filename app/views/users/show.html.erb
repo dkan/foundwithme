@@ -5,12 +5,12 @@
       <div class="clearfix">
 
         <div class="pull-left">
-          <img src="http://placehold.it/200x200" alt="<%= @user.first_name %> <%= @user.last_name %>" class="user-avatar">
+          <%= gravatar_image_tag(@user.email, :alt => @user.first_name, :gravatar => { :size => 200, :default => :mm }, :class => "user-avatar") %>
         </div>
 
         <div class="pull-right">
             <a href="" class="btn btn-info pull-right" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
-            <span class="user-status"><i class="status green"></i> User Status</span>
+            <span class="user-status"><i class="status green"></i> <%= @user.status %></span>
 
         </div>
 
@@ -18,8 +18,8 @@
 
           <p>
             <span class="user-name"><%= @user.first_name %> <%= @user.last_name %></span><br>
-            <span class="user-location">San Francisco, CA</span><br>
-            <span class="user-role">Developer</span> looking for <span class="user-role-want">Business Developer</span>
+            <span class="user-location"><%= @user.location %></span><br>
+            <span class="user-role"><%= @user.role %></span> looking for <span class="user-role-want"><%= @user.looking_for %></span>
           </p>
 
         </div>
