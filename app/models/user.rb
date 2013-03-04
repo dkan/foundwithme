@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :location, :first_name, :last_name, :educations_attributes
+  :location, :first_name, :last_name, :educations_attributes, :employments_attributes
 
   validates_presence_of :first_name, :last_name
   has_many :authentications
@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
   
   #accepts_nested_attributes_for :user_skills
   #accepts_nested_attributes_for :user_interests
-  accepts_nested_attributes_for :educations
-  accepts_nested_attributes_for :employments
+  accepts_nested_attributes_for :educations, :allow_destroy => true
+  accepts_nested_attributes_for :employments, :allow_destroy => true
 
   geocoded_by :location
 

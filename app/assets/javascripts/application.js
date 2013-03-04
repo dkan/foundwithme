@@ -32,7 +32,8 @@ var token = function(res){
               data["error"] +
               '<a class="close" data-dismiss="alert">&#215;</a>' +
           '</div>'
-        )          }
+        )
+      }
     },
     dataType: 'json'
   });
@@ -68,4 +69,12 @@ $(window).on('load', function () {
 
 $(document).on('ready', function () {
 
+});
+
+$(document).ajaxComplete(function() {
+  alert('Updated successfully.');
+});
+
+$(document).ajaxError(function() {
+  alert('There was an error saving your information.');
 });
