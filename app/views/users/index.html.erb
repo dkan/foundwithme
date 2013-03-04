@@ -1,13 +1,18 @@
-<%= render 'search' %>
-
-<div id="search-results">
-  <table>
-    <% @users.each do |u| %>
-      <% if u != current_user %>
-        <%= render partial: 'user_snippit', locals: { u: u } %>
-      <% end %>
-    <% end %>
-  </table>
+<div id="search-container" class="container">
+  <div class="row">
+    <div class="span4">
+      <%= render 'search' %>
+    </div>
+    <div class="span8">
+      <div id="search-results">
+        <% @users.each do |u| %>
+          <% if u != current_user %>
+            <%= render partial: 'user_snippit', locals: { u: u } %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="contactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">

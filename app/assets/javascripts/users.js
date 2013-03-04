@@ -82,20 +82,25 @@ $(document).ready(function () {
     }
   });
 
-  $('.contact-user').on('click', function (event) {
-    if (App.User.paid === true) {
-      $('#email-button').data('id', $(this).data('id'));
-      $('#contactModalLabel').html('Email ' + $(this).data('name'));
-      $('#contactModal').modal();
-    } else {
-      StripeCheckout.open({
-        key:         stripePublicKey,
-        address:     false,
-        amount:      500,
-        name:        'Monthly Subscription',
-        panelLabel:  'Subscribe',
-        token:       token
-      });
+  $('#search-results').on('click', function (event) {
+    if ($(event.target).is('.contact-user, .contact-user i')) {
+      if (App.User.paid === true) {
+        $('#email-button').data('id', $(event.target).data('id'));
+        $('#contactModalLabel').html('Email ' + $(event.target).data('name'));
+        $('#contactModal').modal();
+      } else {
+        StripeCheckout.open({
+          key:         stripePublicKey,
+          address:     false,
+          amount:      500,
+          name:        'Monthly Subscription',
+          panelLabel:  'Subscribe',
+          token:       token
+        });
+      }
+    }
+    if ($(event.target).is('.show-user, .show-user i')) {
+      console.log('show user');
     }
   });
 
@@ -136,23 +141,6 @@ $(document).ready(function () {
     });
   });
 
-  $('#search-button').on('click', function (event) {
-    Search.location = $('input#location').val();
-    $.ajax({
-      type: 'get',
-      url: '/users',
-      data: { query: Search },
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-      },
-      success: function (data, stat, xhr) {
-        console.log(data);
-      },
-      dataType: 'json'
-    });
-
-  });
-
   $('#search-role').on('click', function (event) {
     var roles = [];
     var roleChecks = $('#search-role').children('span');
@@ -162,7 +150,7 @@ $(document).ready(function () {
     }
 
     Search.roles = roles;
-
+    ajaxSearch();
     return false;
   });
 
@@ -175,7 +163,7 @@ $(document).ready(function () {
     }
 
     Search.statuses = statuses;
-
+    ajaxSearch();
     return false;
   });
 
@@ -188,7 +176,7 @@ $(document).ready(function () {
     }
 
     Search.milestones = milestones;
-
+    ajaxSearch();
     return false;
   });
 
@@ -201,7 +189,46 @@ $(document).ready(function () {
     }
 
     Search.lookingFor = lookingFor;
-
+    ajaxSearch();
     return false;
   });
+
+  $('#search-bar').change(ajaxSearch);
 });
+
+var ajaxSearch = function (){
+  Search.location = $('input#location').val();
+  $.ajax({
+    type: 'get',
+    url: '/users',
+    data: { query: Search },
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    },
+    success: function (data, stat, xhr) {
+      $('#search-results').html('')
+      for (var i in data) {
+        $('#search-results').append(
+          '<div class="person clearfix">' +
+            '<div class="pull-right">' +
+              '<a href="" class="btn btn-info pull-right"><i class="icon-user icon-white"></i> Profile</a><br>' +
+              '<a class="btn btn-info pull-right contact-user" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"><i class="icon-envelope icon-white"></i> Message</a>' +
+            '</div>' +
+            '<div class="pull-left">' +
+              '<img src="http://placehold.it/64x64" alt="Person\'s Name" class="user-avatar">' +
+            '</div>' +
+            '<div class="pull-left">' +
+              '<p>' +
+                '<span class="user-full-name">' + data[i].first_name + ' ' + data[i].last_name + '</span><br>' +
+                '<span class="user-location">' + data[i].location + '</span><br>' +
+                '<span class="user-role">' + data[i].role + '</span> looking for <span class="user-role-want">' + data[i].looking_for + '</span><br>' +
+                '<span class="user-current-status"><i class="status green"></i>' + data[i].status + '</span>' +
+              '</p>' +
+            '</div>' +
+          '</div>'
+        )
+      }
+    },
+    dataType: 'json'
+  });
+}

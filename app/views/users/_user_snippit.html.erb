@@ -1,7 +1,17 @@
-<tr>
-  <td><%= u.email %></td>
-  <td><%= u.first_name %></td>
-  <td><%= u.last_name %></td>
-  <td><%= u.location %></td>
-  <td><span class="contact-user btn" data-id="<%= u.id %>" data-name="<%= u.first_name %>">CONTACT ME</span></td>
-<tr>
+<div class="person clearfix">
+  <div class="pull-right">
+    <a class="btn btn-info pull-right show-user" data-id="<%= u.id %>" data-name="<%= u.first_name %>"><i class="icon-user icon-white" data-id="<%= u.id %>" data-name="<%= u.first_name %>"></i> Profile</a><br>
+    <a class="btn btn-info pull-right contact-user" data-id="<%= u.id %>" data-name="<%= u.first_name %>"><i class="icon-envelope icon-white" data-id="<%= u.id %>" data-name="<%= u.first_name %>"></i> Message</a>
+  </div>
+  <div class="pull-left">
+    <img src="http://placehold.it/64x64" alt="Person's Name" class="user-avatar">
+  </div>
+  <div class="pull-left">
+    <p>
+      <span class="user-full-name"><%= u.first_name %> <%= u.last_name %></span><br>
+      <span class="user-location"><%= u.location %></span><br>
+      <span class="user-role"><%= u.role %></span> looking for <span class="user-role-want"><%= u.looking_for %></span><br>
+      <span class="user-current-status"><i class="status green"></i><%= u.status %></span>
+    </p>
+  </div>
+</div>
