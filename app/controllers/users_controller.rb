@@ -11,15 +11,15 @@ class UsersController < ApplicationController
       format.html
     end
   end
-  
+
   def update
     raise params.inspect
   end
-  
+
   def profile
     @user = current_user
   end
-  
+
   def show
     if params[:id]
       @user = User.find(params[:id])
