@@ -13,11 +13,10 @@
         <div id="search-location" class="collapse in">
           <%= text_field_tag 'location', current_user.location, placeholder: 'Enter search location...' %>
         </div>
-        <h5 data-toggle="collapse" data-target="#search-skills">They are skilled in</h5>
+        <h5 data-toggle="collapse" data-target="#search-skills">They are skilled in:</h5>
         <div id="search-skills" class="collapse in">
-          <%= form_tag skill_path(:id), method: :get, remote: true, 'data-type' => :json do |f| %>
-            <%= text_field_tag :skill_id, nil, placeholder: 'Enter skills...' %>
-            <%= submit_tag 'submit' %>
+          <%= form_tag skills_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
+            <%= text_field_tag :skill_name, nil, autocomplete: :off, placeholder: 'Enter skills...' %>
           <% end %>
         </div>
         <h5 data-toggle="collapse" data-target="#search-interests">And interested in</h5>

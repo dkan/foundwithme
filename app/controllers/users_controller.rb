@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   def index
-    @users = User.near([current_user.latitude, current_user.longitude], 100)
     if params[:query]
-      Logger.new(STDOUT).info params[:query]
+      @users = User.near(params[:query][:location], 100)
+      @users = @users.where(milestone: params[:query][:milestones]) if params[:query][:milestones]
+      @users = @users.where(status: params[:query][:statuses]) if params[:query][:statuses]
+      @users = @users.where(role: params[:query][:roles]) if params[:query][:roles]
+      @users = @users.where(looking_for: params[:query][:lookingFor]) if params[:query][:lookingFor]
+    else
+      @users = User.near([current_user.latitude, current_user.longitude], 100)
     end
 
     respond_to do |format|
@@ -13,7 +18,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    @user = User.find(params[:id])
+    
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.json { render json: 'User updated.', status: :ok }
+      else
+        format.json { render json: 'Unable to update user.', status: :error }
+      end 
+    end
   end
 
   def profile

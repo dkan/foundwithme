@@ -1,5 +1,5 @@
 class SkillsController < ApplicationController
-  before_filter :get_skill
+  before_filter :get_skill, except: [:search]
   
   def index
     @user = current_user
@@ -26,6 +26,13 @@ class SkillsController < ApplicationController
     respond_to do |format|
       format.json
       format.html { redirect_to user_omniauth_authorize_path(:linkedin) }
+    end
+  end
+
+  def search
+    @skills = Skill.where(['name like ?', "#{params[:skill_name].downcase}%"])
+    respond_to do |format|
+      format.json { render json: @skills, status: :ok }
     end
   end
 
