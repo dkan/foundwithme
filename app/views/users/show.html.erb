@@ -1,8 +1,6 @@
 <div class="container" id="profile-container">
   <div class="row">
-    <div class="span1">
-    </div>
-    <div class="span10">
+    <div class="span10 offset1">
 
       <div class="clearfix">
 
@@ -32,40 +30,54 @@
 
       </div>
 
-      <div class="clearfix">
+    </div>
+  </div>
+  <div class="row">
+    <div class="span10 offset1">
 
         <h4>Skills</h4>
 
         <% if @user.user_skills %>
-          <% @user.user_skills.each do |u| %>
-              <span class="badge badge-warning"><%= u.skill.name %></span>
+          <% @user.user_skills.each do |s| %>
+              <span class="badge badge-warning"><%= s.skill.name %></span>
+          <% end %>
+        <% end %>
+
+        <h4>Experience</h4>
+
+        <% if @user.employments %>
+          <% @user.employments.each do |emp| %>
+
+            <span class="edu-name pull-right"><%= emp.start_date %> - <%= emp.end_date %></span>
+            <span class="edu-year-range"><%= emp.company %></span>
+            <p><%= emp.title %></p>
+
           <% end %>
         <% end %>
 
         <h4> Education </h4>
 
         <% if @user.educations %>
-        <table>
           <% @user.educations.each do |edu| %>
-              <tr>
-                <td><%= edu.institution %></td>
-                <td><%= edu.start_date %></td>
-                <td><%= edu.end_date %></td>
-              </tr>
+
+            <span class="edu-name pull-right"><%= edu.start_date.year %> - <%= edu.end_date.year %></span>
+            <span class="edu-year-range"><%= edu.institution %></span>
+            <p>Education Description if any</p>
+
           <% end %>
-        </table>
+        <% end %>
+
+
+        <h4>Interests</h4>
+
+        <% if @user.user_interests %>
+          <% @user.user_interests.each do |i| %>
+              <span class="badge badge-warning"><%= i %></span>
+          <% end %>
         <% end %>
 
 
 
-
-
-      </div>
-
-
-
-    </div>
-    <div class="span1">
     </div>
   </div>
 </div>
