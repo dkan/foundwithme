@@ -41,6 +41,7 @@ group :assets do
   gem 'therubyracer', platforms: :ruby
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-rails', '~> 2.1'
+	gem 'gravatar_image_tag'
 end
 
 group :development do

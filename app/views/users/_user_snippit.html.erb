@@ -4,7 +4,7 @@
     <a class="btn btn-info pull-right contact-user" data-id="<%= u.id %>" data-name="<%= u.first_name %>"><i class="icon-envelope icon-white" data-id="<%= u.id %>" data-name="<%= u.first_name %>"></i> Message</a>
   </div>
   <div class="pull-left">
-    <img src="http://placehold.it/64x64" alt="Person's Name" class="user-avatar">
+    <%= gravatar_image_tag(u.email, :alt => u.first_name, :gravatar => { :size => 64, :default => :mm }, :class => "user-avatar") %>
   </div>
   <div class="pull-left">
     <p>
