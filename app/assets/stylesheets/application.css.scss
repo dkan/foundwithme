@@ -203,6 +203,24 @@ a {
 
 		}
 	}
+
+  #search-wrapper {
+    width: 620px;
+    height: 100%;
+    overflow: hidden;
+
+    #search-mask {
+      width: 1860px;
+      height: 100%;
+
+      .search-results-item {
+        width: 620px;
+        height: 100%;
+        float: left;
+      }
+    }
+  }
+
 	#search-bar {
 		background: #ffffff;
 		border: 1px solid $borderBrown;

@@ -4,12 +4,24 @@
       <%= render 'search' %>
     </div>
     <div class="span8">
-      <div id="search-results">
-        <% @users.each do |u| %>
-          <% if u != current_user %>
-            <%= render partial: 'user_snippit', locals: { u: u } %>
-          <% end %>
-        <% end %>
+      <div id="search-wrapper">
+        <div id="search-mask">
+          <div id="search-results" class="search-results-item">
+            <% @users.each do |u| %>
+              <% if u != current_user %>
+                <%= render partial: 'user_snippit', locals: { u: u } %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div id="me-display" class="search-results-item">
+            <%= render 'info', locals: { user: current_user } %>
+          </div>
+
+          <div id="search-results-display" class="search-results-item">
+            <%= render 'info', locals: { user: current_user } %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
