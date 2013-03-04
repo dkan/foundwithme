@@ -324,8 +324,8 @@ var ajaxSearch = function (){
           $('#search-results').append(
             '<div class="person clearfix">' +
               '<div class="pull-right">' +
-                '<a href="" class="btn btn-info pull-right"><i class="icon-user icon-white"></i> Profile</a><br>' +
-                '<a class="btn btn-info pull-right contact-user" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"><i class="icon-envelope icon-white"></i> Message</a>' +
+              '<a class="btn btn-info pull-right show-user" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"><i class="icon-user icon-white" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"></i> Profile</a><br>' +
+              '<a class="btn btn-info pull-right contact-user" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"><i class="icon-envelope icon-white" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"></i> Message</a>' +
               '</div>' +
               '<div class="pull-left">' +
                 '<img src="' + gravatar + '" alt="' + data[i].first_name + '" class="user-avatar">' +
