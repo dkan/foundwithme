@@ -8,8 +8,11 @@ var Search = {
   location: ''
 };
 
-$(document).ready(function(){
-  $('div[id^=search-]').on('click', function(event){
+$(window).load(function () {
+});
+
+$(document).ready(function () {
+  $('div[id^=search-]').on('click', function (event) {
 
     if ($(event.target).is('span.checkbox')) {
       if ($(event.target).hasClass('checked')) {
@@ -20,10 +23,10 @@ $(document).ready(function(){
     }
   });
 
-  $('.contact-user').on('click', function(){
-    if (App.User.paid === true){
+  $('.contact-user').on('click', function (event) {
+    if (App.User.paid === true) {
       $('#email-button').data('id', $(this).data('id'));
-      $('#contactModalLabel').html('Email ' + $(this).data('name'))
+      $('#contactModalLabel').html('Email ' + $(this).data('name'));
       $('#contactModal').modal();
     } else {
       StripeCheckout.open({
@@ -37,7 +40,7 @@ $(document).ready(function(){
     }
   });
 
-  $('#email-button').on('click', function() {
+  $('#email-button').on('click', function (event) {
     $.ajax({
       type: 'post',
       url: '/messages',
@@ -74,7 +77,7 @@ $(document).ready(function(){
     });
   });
 
-  $('#search-button').on('click', function(){
+  $('#search-button').on('click', function (event) {
     $.ajax({
       type: 'get',
       url: '/users',
@@ -90,53 +93,55 @@ $(document).ready(function(){
 
   });
 
-  $('#search-role').on('click', function(event){
-    var roles = []
-    var roleChecks = $('#search-role').children('span')
-    for (var i=0,rc;rc=roleChecks[i];i++) {
-      if ($(rc).hasClass('checked')){
-        roles.push($(rc).attr('name'));
-      }
+  $('#search-role').on('click', function (event) {
+    var roles = [];
+    var roleChecks = $('#search-role').children('span');
+
+    for (var i = 0, rc; rc = roleChecks[i]; i++) {
+      if ($(rc).hasClass('checked')) roles.push($(rc).attr('name'));
     }
+
     Search.roles = roles;
+
     return false;
   });
 
-  $('#search-status').on('click', function(){
-    var statuses = []
-    var statusChecks = $('#search-status').children('span')
-    for (var i=0,sc;sc=statusChecks[i];i++) {
-      if ($(sc).hasClass('checked')){
-        statuses.push($(sc).attr('name'));
-      }
+  $('#search-status').on('click', function (event) {
+    var statuses = [];
+    var statusChecks = $('#search-status').children('span');
+
+    for (var i = 0, sc; sc = statusChecks[i]; i++) {
+      if ($(sc).hasClass('checked')) statuses.push($(sc).attr('name'));
     }
+
     Search.statuses = statuses;
+
     return false;
   });
 
-  $('#search-milestone').on('click', function(){
-    var milestones = []
-    var milestonesChecks = $('#search-milestone').children('span')
+  $('#search-milestone').on('click', function (event) {
+    var milestones = [];
+    var milestonesChecks = $('#search-milestone').children('span');
 
-    for (var i=0,mc;mc=milestonesChecks[i];i++) {
-      if ($(mc).hasClass('checked')){
-        milestones.push($(mc).attr('name'));
-      }
+    for (var i = 0, mc; mc = milestonesChecks[i]; i++) {
+      if ($(mc).hasClass('checked')) milestones.push($(mc).attr('name'));
     }
+
     Search.milestones = milestones;
+
     return false;
   });
 
-  $('#search-looking-for').on('click', function(){
-    var lookingFor = []
-    var lookingForChecks = $('#search-looking-for').children('span')
+  $('#search-looking-for').on('click', function (event) {
+    var lookingFor = [];
+    var lookingForChecks = $('#search-looking-for').children('span');
 
     for (var i=0,lfc;lfc=lookingForChecks[i];i++) {
-      if ($(lfc).hasClass('checked')){
-        lookingFor.push($(lfc).attr('name'));
-      }
+      if ($(lfc).hasClass('checked')) lookingFor.push($(lfc).attr('name'));
     }
+
     Search.lookingFor = lookingFor;
+
     return false;
   });
 });
