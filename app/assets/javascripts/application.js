@@ -52,6 +52,8 @@ $(window).on('load', function () {
     }
   });
   */
+  $('.carousel').carousel();
+  
   $('#customStripeButton').click(function(){
 
     StripeCheckout.open({
