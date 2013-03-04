@@ -36,7 +36,7 @@ var token = function(res){
         )
       }
     },
-    dataType: 'json'
+    dataType: 'script'
   });
 };
 
@@ -74,10 +74,17 @@ $(document).on('ready', function () {
 
   $('#search, .go-back, .go-back-me').on('click', function (event) {
     $('#search-wrapper').scrollTo($('#search-results'), 800);
+    $('#search-results-display').fadeOut(800);
+    setTimeout(function () {
+      $('#me-display').show();
+      $('#search-results-display').show();
+    }, 800);
+
     $('#me-display').show();
   	$('ul.nav li').removeClass('active');
   	$('#search').parent().addClass('active');
   	$('#nav-caret').removeClass().addClass('search');
+
     return false;
   });
 });

@@ -137,8 +137,8 @@ $(document).ready(function () {
     if ($(event.target).is('.contact-user, .contact-user i')) {
       if (App.User.paid === true) {
         $('#email-button').data('id', $(event.target).data('id'));
-        $('#contactModalLabel, #info-contactModalLabel').html('Email ' + $(event.target).data('name'));
-        $('#contactModal, #info-contactModal').modal();
+        $('#contactModalLabel').html('Email ' + $(event.target).data('name'));
+        $('#contactModal').modal();
       } else {
         StripeCheckout.open({
           key:         stripePublicKey,
@@ -152,6 +152,18 @@ $(document).ready(function () {
       }
     } else if ($(event.target).is('.person, .show-user')) {
       $('#me-display').hide();
+
+      $.ajax({
+        type: 'get',
+        url: '/users/' + $(event.target).attr('data-id'),
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function (data, stat, xhr) {
+        },
+        dataType: 'script'
+      });
+
       $('#search-wrapper').scrollTo($('#search-results-display'), 800);
     }
 
@@ -195,43 +207,6 @@ $(document).ready(function () {
     });
   });
   
-  $('#info-email-button').on('click', function (event) {
-    $.ajax({
-      type: 'post',
-      url: '/messages',
-      data: {
-        message: {
-          sender_id: App.User.id,
-          recipient_id: $('#info-email-button').data('id'),
-          body: $('#info-email-button .email-body').val()
-        }
-      },
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-      },
-      success: function (data, stat, xhr) {
-        if (data['success']) {
-          $('#info-email-button .email-body').val('');
-          $('#flash').html(
-            '<div class="alert alert-success">' +
-                data["success"] +
-                '<a class="close" data-dismiss="alert">&#215;</a>' +
-            '</div>'
-          )
-        } else {
-          $('#flash').html(
-            '<div class="alert alert-error">' +
-                data["error"] +
-                '<a class="close" data-dismiss="alert">&#215;</a>' +
-            '</div>'
-          )
-        }
-        $('#info-contactModal').modal('toggle')
-      },
-      dataType: 'json'
-    });
-  });
-
   $('#search-role').on('click', function (event) {
     var roles = [];
     var roleChecks = $('#search-role').children('span');
@@ -320,7 +295,7 @@ var ajaxSearch = function (){
         $('#search-results').append('<div style="height: 100px;"></div>');
       } else {
         for (var i in data) {
-          var gravatar = 'http://www.gravatar.com/avatar/' + MD5(data[i].email)
+          var gravatar = 'http://www.gravatar.com/avatar/' + MD5(data[i].email) + '?d=mm'
           $('#search-results').append(
             '<div class="person clearfix">' +
               '<div class="pull-right">' +

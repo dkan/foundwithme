@@ -1,0 +1,75 @@
+var doIt = '<div class="container" id="info-container">' +
+'  <div class="go-back">' +
+'    <h2 style="cursor: pointer;">&lt;-</h2>' +
+'  </div>' +
+'  <div class="row">' +
+'    <div class="span10 offset1">' +
+'      <div class="clearfix">' +
+'        <div class="pull-left">' +
+'          <%= gravatar_image_tag(@user.email, :alt => @user.first_name, :gravatar => { :size => 200, :default => :mm }, :class => "user-avatar") %>' +
+'        </div>' +
+'        <div class="pull-right">' +
+'          <a class="btn btn-info pull-right contact-user" id="btn-info-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>';
+
+          <% if @user.status %>
+doIt += '            <span class="user-status"><i class="status green"></i> <%= @user.status %></span>';
+          <% end %>
+doIt += '        </div>' +
+'        <div class="pull-left">' +
+'          <p>' +
+'            <span class="user-name"><%= @user.first_name %> <%= @user.last_name %></span><br>' +
+'            <span class="user-location"><%= @user.location %></span><br>';
+
+            <% if @user.role && @user.looking_for %>
+doIt += '              <span class="user-role"><%= @user.role %></span> looking for <span class="user-role-want"><%= @user.looking_for %></span>';
+            <% elsif @user.role %>
+doIt += '              <span class="user-role"><%= @user.role %></span>';
+            <% elsif @user.looking_for%>
+doIt += '              Looking for <span class="user-role-want"><%= @user.looking_for %></span><br>';
+            <% end %>
+
+doIt += '          </p>' +
+'        </div>' +
+'        <div class="pull-left user-bio">' +
+'          <p><%= @user.bio %></p>' +
+'        </div>' +
+'      </div>' +
+'    </div>' +
+'  </div>' +
+'  <div class="row">' +
+'    <div class="span10 offset1">' +
+'        <h4>Skills</h4>';
+
+        <% if @user.user_skills %>
+          <% @user.user_skills.each do |s| %>
+doIt += '              <span class="badge badge-warning"><%= s.skill.name %></span>';
+          <% end %>
+        <% end %>
+doIt += '        <h4>Experience</h4>';
+        <% if @user.employments %>
+          <% @user.employments.each do |emp| %>
+doIt += '            <span class="edu-name pull-right"><%= emp.start_date.year %> - <%= emp.end_date ? emp.end_date.year : "Present" %></span>' +
+'            <span class="edu-year-range"><%= emp.company %></span>' +
+'            <p><%= emp.title %></p>';
+          <% end %>
+        <% end %>
+doIt += '        <h4> Education </h4>';
+        <% if @user.educations %>
+          <% @user.educations.each do |edu| %>
+doIt += '            <span class="edu-name pull-right"><%= edu.start_date.year %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>' +
+'            <span class="edu-year-range"><%= edu.institution %></span>' +
+'            <p>Education Description if any</p>';
+          <% end %>
+        <% end %>
+doIt += '        <h4>Interests</h4>';
+        <% if @user.user_interests %>
+          <% @user.user_interests.each do |i| %>
+doIt += '              <span class="badge badge-warning"><%= i.interest.name %></span>';
+          <% end %>
+        <% end %>
+
+doIt += '    </div>' +
+'  </div>' +
+'</div>';
+
+$('#search-results-display').html(doIt);
