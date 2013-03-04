@@ -190,7 +190,6 @@ var ajaxSearch = function (){
     success: function (data, stat, xhr) {
       $('#search-results').html('')
       for (var i in data) {
-        console.log(data[i]);
         $('#search-results').append(
           '<div class="person clearfix">' +
             '<div class="pull-right">' +
