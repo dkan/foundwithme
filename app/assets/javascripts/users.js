@@ -259,6 +259,7 @@ var ajaxSearch = function (){
     success: function (data, stat, xhr) {
       $('#search-results').html('')
       for (var i in data) {
+        var gravatar = 'http://www.gravatar.com/avatar/' + MD5(data[i].email)
         $('#search-results').append(
           '<div class="person clearfix">' +
             '<div class="pull-right">' +
@@ -266,7 +267,7 @@ var ajaxSearch = function (){
               '<a class="btn btn-info pull-right contact-user" data-id="' + data[i].id + '" data-name="' + data[i].first_name + '"><i class="icon-envelope icon-white"></i> Message</a>' +
             '</div>' +
             '<div class="pull-left">' +
-              '<img src="http://placehold.it/64x64" alt="Person\'s Name" class="user-avatar">' +
+              '<img src="' + gravatar + '" alt="' + data[i].first_name + '" class="user-avatar">' +
             '</div>' +
             '<div class="pull-left">' +
               '<p>' +
