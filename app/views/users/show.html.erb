@@ -17,12 +17,20 @@
           <% if @user.status %>
             <span class="user-status"><i class="status green"></i> <%= @user.status %></span>
           <% end %>
+          <% if @user == current_user %>
+            <div class="user-status-edit" style="display:none;">
+              <%= simple_form_for @user, html: { id: 'user-statuses-form'}, remote: true do |f| %>
+                <%= f.input :status, collection: User::STATUSES %>
+              <% end %>
+            </div>
+          <% end %>
 
         </div>
 
         <div class="pull-left">
 
-          <p>
+          <div class="looking-for">
+            <p>
             <span class="user-name"><%= @user.first_name %> <%= @user.last_name %></span><br>
             <span class="user-location"><%= @user.location %></span><br>
             <% if @user.role && @user.looking_for %>
@@ -32,8 +40,22 @@
             <% elsif @user.looking_for%>
               Looking for <span class="user-role-want"><%= @user.looking_for %></span><br>
             <% end %>
-          </p>
-
+            </p>
+          </div>
+          <% if @user == current_user %>
+          <div class="looking-for-edit" style="display:none;">
+            <p>
+              <%= simple_form_for @user, html: { id: 'user-basic-form'}, remote: true do |f| %>
+            
+              <span class="user-name"><%= f.input :first_name %> <%= f.input :last_name %></span><br>
+              <span class="user-location"><%= @user.location %></span><br>
+            
+              <span class="user-role"><%= f.input :role, collection: User::ROLES, label: false %></span> looking for <span class="user-role-want"><%= f.input :looking_for, collection: User::ROLES, label: false %></span>
+            
+              <% end %>
+            </p>
+          </div>
+          <% end %>
         </div>
 
         <div class="pull-left user-bio">

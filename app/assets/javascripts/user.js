@@ -60,13 +60,37 @@ function User (currentUser) {
 }
 
 var showUserInfo = function(){
-  $('#user_info').show();
+  $('.user-status-edit').hide();
+  $('.user-status').show();
+  
+  $('.looking-for-edit').hide();
+  $('.looking-for').show();
+  
   $('#profile-edit-row').hide();
+  $('#user_info').show();
   return false;
 }
 
 var showUserEdit = function(){
-  $('#user_info').hide();
+  $('.user-status-edit').show();
+  $('.user-status').hide();
+  
+  $('.looking-for-edit').show();
+  $('.looking-for').hide();
+  
   $('#profile-edit-row').show();
+  $('#user_info').hide();
+  return false;
+}
+
+var submitUserForms = function(){
+  $('#user-basic-form').submit();
+  $('#user-statuses-form').submit();
+  $('#skills-form').submit();
+  $('#user-edit-form').submit();
+  $('#interests-form').submit();
+  
+  // for now until Jeff updates loading other users
+  location.reload();
   return false;
 }

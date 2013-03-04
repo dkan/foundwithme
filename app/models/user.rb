@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :location, :first_name, :last_name, :educations_attributes, :employments_attributes
+  :location, :first_name, :last_name, :status, :milestone, :role, :looking_for,
+  :educations_attributes, :employments_attributes
 
   validates_presence_of :first_name, :last_name
   has_many :authentications
@@ -15,6 +16,10 @@ class User < ActiveRecord::Base
   has_many :user_interests
   has_many :educations
   has_many :employments
+  
+  STATUSES = ['Casually looking', 'On the prowl','Happily matched', 'On the rebound', 'Open relationship']
+  MILESTONE_STATUSES = ['Nowhere', 'Ideas Flowing', 'Prototyped Products', 'People to use it']
+  ROLES = ['Developer', 'Designer', 'Business Developer', 'Advisor']
   
   accepts_nested_attributes_for :educations, :allow_destroy => true
   accepts_nested_attributes_for :employments, :allow_destroy => true

@@ -56,6 +56,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    raise params.inspect
     @user = current_user
   end
 
