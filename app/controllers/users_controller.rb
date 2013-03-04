@@ -5,10 +5,10 @@ class UsersController < ApplicationController
       @users = @users.where(sql_query)
       @users = @users.joins(:user_skills).where(:user_skills => {skill_id: skill_ids})
         .group("users.id")
-        .having("count(user_id) = ?", skills_count) if params[:query][:skills]
+        .having("count(user_skills.user_id) = ?", skills_count) if params[:query][:skills]
       @users = @users.joins(:user_interests).where(:user_interests => {interest_id: interest_ids})
         .group("users.id")
-        .having("count(user_id) = ?", interests_count) if params[:query][:interests]
+        .having("count(user_interests.user_id) = ?", interests_count) if params[:query][:interests]
       @users.to_a.delete(current_user)
     else
       @users = User.near([current_user.latitude, current_user.longitude], 100)
