@@ -1,23 +1,73 @@
-<h2> Education </h2>
+<div class="container" id="profile-container">
+  <div class="row">
+    <div class="span1">
+    </div>
+    <div class="span10">
 
-<% if @user.educations %>
-<table>
-  <% @user.educations.each do |edu| %>
-      <tr>
-        <td><%= edu.institution %></td>
-        <td><%= edu.start_date %></td>
-        <td><%= edu.end_date %></td>
-      </tr>
-  <% end %>
-</table>
-<% end %>
+      <div class="clearfix">
 
-<h2> Skills </h2>
+        <div class="pull-left">
+          <img src="http://placehold.it/200x200" alt="<%= @user.first_name %> <%= @user.last_name %>" class="user-avatar">
+        </div>
 
-<% if @user.user_skills %>
-<table>
-  <% @user.user_skills.each do |u| %>
-      <tr><td><%= u.skill.name %></td></tr>
-  <% end %>
-</table>
-<% end %>
+        <div class="pull-right">
+            <a href="" class="btn btn-info pull-right" id="btn-send-msg"><i class="icon-envelope icon-white"></i> Message</a><br>&nbsp;<br>
+            <span class="user-status"><i class="status green"></i> User Status</span>
+
+        </div>
+
+        <div class="pull-left">
+
+          <p>
+            <span class="user-name"><%= @user.first_name %> <%= @user.last_name %></span><br>
+            <span class="user-location">San Francisco, CA</span><br>
+            <span class="user-role">Developer</span> looking for <span class="user-role-want">Business Developer</span>
+          </p>
+
+        </div>
+
+        <div class="pull-left user-bio">
+          <p>This is a quick bio describing what I want and where I am at. Bacon ipsum dolor sit amet boudin spare ribs andouille prosciutto hamburger salami jowl. Kielbasa pancetta jerky beef prosciutto pork boudin beef ribs turkey ham short loin shank brisket, fatback filet mignon. Leberkas turducken short loin brisket. Salami cow sirloin brisket andouille tenderloin bacon doner frankfurter.</p>
+        </div>
+
+      </div>
+
+      <div class="clearfix">
+
+        <h4>Skills</h4>
+
+        <% if @user.user_skills %>
+          <% @user.user_skills.each do |u| %>
+              <span class="badge badge-warning"><%= u.skill.name %></span>
+          <% end %>
+        <% end %>
+
+        <h4> Education </h4>
+
+        <% if @user.educations %>
+        <table>
+          <% @user.educations.each do |edu| %>
+              <tr>
+                <td><%= edu.institution %></td>
+                <td><%= edu.start_date %></td>
+                <td><%= edu.end_date %></td>
+              </tr>
+          <% end %>
+        </table>
+        <% end %>
+
+
+
+
+
+      </div>
+
+
+
+    </div>
+    <div class="span1">
+    </div>
+  </div>
+</div>
+
+
