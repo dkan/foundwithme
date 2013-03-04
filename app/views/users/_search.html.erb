@@ -17,7 +17,6 @@
         <div id="search-skills">
           <%= form_tag skills_search_path, method: :get, remote: true, 'data-type' => :json do |f| %>
             <%= text_field_tag :skill_name, nil, autocomplete: :off, placeholder: 'Enter skills...' %>
-            <%= submit_tag 'submit' %>
           <% end %>
         </div>
         <h5>And interested in:</h5>
