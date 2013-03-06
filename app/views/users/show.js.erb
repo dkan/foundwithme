@@ -43,7 +43,7 @@ doIt += '              <span class="badge badge-warning"><%= s.skill.name %></sp
 doIt += '        <h4>Experience</h4>';
         <% if @user.employments %>
           <% @user.employments.each do |emp| %>
-doIt += '            <span class="edu-name pull-right"><%= emp.start_date ? emp.start_date.year : '' %> - <%= emp.end_date ? emp.end_date.year : "Present" %></span>' +
+doIt += '            <span class="edu-name pull-right"><%= emp.start_date.try(:year) %> - <%= emp.end_date ? emp.end_date.year : "Present" %></span>' +
 '            <span class="edu-year-range"><%= emp.company %></span>' +
 '            <p><%= emp.title %></p>';
           <% end %>
@@ -51,7 +51,7 @@ doIt += '            <span class="edu-name pull-right"><%= emp.start_date ? emp.
 doIt += '        <h4> Education </h4>';
         <% if @user.educations %>
           <% @user.educations.each do |edu| %>
-doIt += '            <span class="edu-name pull-right"><%= edu.start_date ? edu.start_date.year : '' %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>' +
+doIt += '            <span class="edu-name pull-right"><%= edu.start_date.try(:year) %> - <%= edu.end_date ? edu.end_date.year : "Present" %></span>' +
 '            <span class="edu-year-range"><%= edu.institution %></span>' +
 '            <p>Education Description if any</p>';
           <% end %>
